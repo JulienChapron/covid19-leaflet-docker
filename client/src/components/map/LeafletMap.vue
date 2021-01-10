@@ -1,0 +1,152 @@
+<template>
+  <l-map class="leaflet-container" :zoom="3" :center="initialLocation">
+    <l-control-layers
+      position="topright"
+      :collapsed="false"
+      :sort-layers="true"
+    />
+    <l-tile-layer
+      v-for="tileProvider in tileProviders"
+      :key="tileProvider.name"
+      :name="tileProvider.name"
+      :visible="tileProvider.visible"
+      :attribution="tileProvider.attribution"
+      :url="tileProvider.url"
+      layer-type="base"
+      :options="{ scrollWheelZoom: false, minZoom: 3, dragging: false }"
+    ></l-tile-layer>
+    <l-marker-cluster
+      :options="clusterOptions"
+      @clusterclick="click()"
+      @ready="ready"
+    >
+      <l-marker
+        @click="getData(country)"
+        v-for="country in locations"
+        :key="country.id"
+        :lat-lng="country.latlng"
+      >
+        <l-popup :content="country.text"></l-popup>
+      </l-marker>
+    </l-marker-cluster>
+  </l-map>
+</template>
+
+<script>
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LPopup,
+  LControlLayers,
+} from "vue2-leaflet";
+import { latLng, Icon } from "leaflet";
+import Vue2LeafletMarkercluster from "@/components/map/plugins/Vue2LeafletMarkercluster.vue";
+import "./plugins/leaflet-tilelayer-subpixel-fix";
+import { mapGetters, mapActions } from "vuex";
+
+const tileProviders = [
+  {
+    name: "Normal",
+    visible: true,
+    url: "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+    attribution: 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.',
+  },
+  {
+    name: "Dark",
+    visible: false,
+    url: "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
+    attribution: 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.',
+  },
+];
+
+// quick fix if marker icons are missing
+delete Icon.Default.prototype._getIconUrl;
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+});
+
+export default {
+  name: "Map",
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker,
+    LPopup,
+    LControlLayers,
+    "l-marker-cluster": Vue2LeafletMarkercluster,
+  },
+  data() {
+    return {
+      markers: [],
+      locations: [],
+      clusterOptions: {},
+      initialLocation: latLng(46.7, 1.7),
+      tileProviders: tileProviders,
+      layersPosition: "topright",
+    };
+  },
+  computed: {
+    ...mapGetters(["markersCountries"]),
+  },
+  watch: {
+    markersCountries() {
+      this.markerData();
+    },
+  },
+  mounted() {
+    //this.$store.dispatch("getDataMarkersCountries");
+    if (this.markersCountries.length) {
+      this.markerData();
+    }
+    setTimeout(() => {
+      this.$nextTick(() => {
+        this.clusterOptions = { disableClusteringAtZoom: 11 };
+      });
+    }, 5000);
+  },
+  methods: {
+    ...mapActions([
+      "getDataCountry",
+      "activeNavigationDrawers",
+      "getDataMarkersCountries",
+    ]),
+    getData(markerData) {
+      if (markerData.country === "US") {
+        this.getDataCountry([markerData.country, markerData.text, "NC"]);
+      } else if (markerData.country !== markerData.text) {
+        this.getDataCountry([markerData.country, "NC", markerData.text]);
+      } else {
+        this.getDataCountry([markerData.country, "NC", "NC"]);
+      }
+      this.activeNavigationDrawers(true);
+    },
+    click: (e) => e,
+    ready: (e) => e,
+    markerData() {
+      for (let i = 0; i < this.markersCountries.length; i++) {
+        this.locations.push({
+          id: i,
+          country: this.markersCountries[i].country,
+          latlng: latLng(
+            this.markersCountries[i].Lat,
+            this.markersCountries[i].Long
+          ),
+          text:
+            this.markersCountries[i].province === ""
+              ? this.markersCountries[i].country
+              : this.markersCountries[i].province,
+        });
+      }
+    },
+  },
+};
+</script>
+
+<style>
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
+</style>

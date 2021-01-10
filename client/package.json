@@ -1,0 +1,65 @@
+{
+  "name": "news-covid19",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:prod": "vue-cli-service build --mode production",
+    "build:staging": "vue-cli-service build --mode staging",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "apexcharts": "^3.19.0",
+    "axios": "^0.19.2",
+    "core-js": "^3.6.4",
+    "dotenv-webpack": "^1.8.0",
+    "es6-promise": "^4.2.8",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "leaflet": "^1.6.0",
+    "leaflet-search": "^2.9.8",
+    "leaflet.markercluster": "^1.4.1",
+    "vue": "^2.6.11",
+    "vue-analytics": "^5.22.1",
+    "vue-apexcharts": "^1.5.3",
+    "vue2-leaflet": "^2.5.2",
+    "vue2-leaflet-markercluster": "^3.1.0",
+    "vuetify": "^2.2.26",
+    "vuex": "^3.3.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@mdi/font": "^5.1.45",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "fibers": "^5.0.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
