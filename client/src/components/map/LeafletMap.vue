@@ -1,5 +1,6 @@
 <template>
-  <l-map class="leaflet-container" :zoom="3" :center="initialLocation">
+<div style="background-color:white; border-radius:5px; padding:10px;">
+  <l-map :zoom="3" :center="initialLocation">
     <l-control-layers
       position="topright"
       :collapsed="false"
@@ -30,6 +31,7 @@
       </l-marker>
     </l-marker-cluster>
   </l-map>
+  </div>
 </template>
 
 <script>
@@ -97,7 +99,6 @@ export default {
     },
   },
   mounted() {
-    //this.$store.dispatch("getDataMarkersCountries");
     if (this.markersCountries.length) {
       this.markerData();
     }
@@ -121,7 +122,6 @@ export default {
       } else {
         this.getDataCountry([markerData.country, "NC", "NC"]);
       }
-      this.activeNavigationDrawers(true);
     },
     click: (e) => e,
     ready: (e) => e,

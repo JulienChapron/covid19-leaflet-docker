@@ -1,8 +1,8 @@
 <template>
   <div v-if="windowWidth !== 0" class="small">
     <VueApexCharts
-      :width="windowWidth"
-      height="160px"
+      width="100%"
+      height="200px"
       type="line"
       :options="options"
       :series="series"
