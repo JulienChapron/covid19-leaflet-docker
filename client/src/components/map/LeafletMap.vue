@@ -84,7 +84,9 @@ export default {
     return {
       markers: [],
       locations: [],
-      clusterOptions: {},
+      clusterOptions: {
+        color:'#fff'
+      },
       initialLocation: latLng(46.7, 1.7),
       tileProviders: tileProviders,
       layersPosition: "topright",
@@ -149,4 +151,16 @@ export default {
 @import "~leaflet/dist/leaflet.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
+.marker-cluster-small div {
+    background-color: #2ec4b6;
+    color:white
+}
+.marker-cluster-medium div {
+  background-color: #ff9f1c;
+  color:white
+}
+.marker-cluster-large div {
+  background-color: #e71d36;
+  color:white
+}
 </style>

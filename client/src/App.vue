@@ -1,11 +1,9 @@
 <template>
-<div>
-  <v-app style="background-color:#011627 !important">
+  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
     <Navigation />
     <Dashboard />
     <Footer />
   </v-app>
-  </div>
 </template>
 
 <script>
@@ -17,7 +15,12 @@ export default {
   components: {
     Navigation,
     Dashboard,
-    Footer
+    Footer,
   },
+  computed:{
+    theme(){
+      return (this.$vuetify.theme.dark) ? 'dark' : 'light'
+    }
+  }
 };
 </script>

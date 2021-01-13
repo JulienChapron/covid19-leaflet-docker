@@ -1,5 +1,5 @@
 <template>
-<div>
+<v-main color="primary">
   <v-row no-gutters>
     <v-col cols="12" xs="12" sm="12" md="6" lg="4">
       <WorldData style="margin:1vh;height:43.5vh"/>
@@ -16,7 +16,7 @@
       <SideBar style="margin:1vh;height:43.5vh"/>
     </v-col>
   </v-row>
-  </div>
+  </v-main>
 </template>
 <script>
 import LeafletMap from "@/components/map/LeafletMap";

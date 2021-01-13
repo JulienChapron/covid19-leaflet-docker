@@ -1,13 +1,9 @@
 <template>
-  <div style="background-color:white; border-radius:5px; padding:10px;">TEST WORLD DATA</div>
+  <v-app root>
+      TEST WORLD
+  </v-app>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
-
-<style>
-
-</style>
