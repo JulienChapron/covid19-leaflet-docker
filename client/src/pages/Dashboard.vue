@@ -1,27 +1,36 @@
 <template>
-<v-main color="primary">
-  <v-row no-gutters>
-    <v-col cols="12" xs="12" sm="12" md="6" lg="4">
-      <WorldData style="margin:1vh;height:43.5vh"/>
-    </v-col>
-    <v-col cols="12" xs="12" sm="12" md="6" lg="8">
-      <LeafletMap style="margin:1vh;height:43.5vh;width:auto !important"/>
-    </v-col>
-  </v-row>
-  <v-row no-gutters>
-    <v-col cols="12" xs="12" sm="12" md="6" lg="4">
-      <SideBar style="margin:1vh;height:43.5vh"/>
-    </v-col>
-    <v-col cols="12" xs="12" sm="12" md="6" lg="8">
-      <SideBar style="margin:1vh;height:43.5vh"/>
-    </v-col>
-  </v-row>
-  </v-main>
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12" xs="12" sm="12" md="12" lg="4">
+        <v-card color="secondary" elevation="4">
+          <SummaryCountry style="height:41vh" />
+        </v-card>
+      </v-col>
+      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
+        <v-card color="secondary" elevation="4">
+          <ChartSummaryCountry style="height:41vh" />
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" xs="12" sm="12" md="12" lg="4">
+        <v-card color="secondary" elevation="4">
+          <SummaryGlobal style="height:40vh" />
+        </v-card>
+      </v-col>
+      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
+        <v-card color="secondary" elevation="4">
+          <LeafletMap style="width:auto !important;height:40vh;" />
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 import LeafletMap from "@/components/map/LeafletMap";
-import SideBar from "@/components/map/SideBar";
-import WorldData from "@/components/dashboard/WorldData";
+import SummaryGlobal from "@/components/dashboard/SummaryGlobal";
+import SummaryCountry from "@/components/dashboard/SummaryCountry";
+import ChartSummaryCountry from "@/components/dashboard/ChartSummaryCountry";
 export default {
   name: "Dashboard",
   data() {
@@ -29,13 +38,19 @@ export default {
       drawer: true,
     };
   },
-  created(){
+  created() {
     this.$store.dispatch("getDataMarkersCountries");
   },
-    components: {
+  components: {
     LeafletMap,
-    SideBar,
-    WorldData
+    SummaryGlobal,
+    SummaryCountry,
+    ChartSummaryCountry,
+  },
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? "dark" : "light";
+    },
   },
 };
 </script>

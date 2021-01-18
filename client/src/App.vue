@@ -1,5 +1,5 @@
 <template>
-  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
+  <v-app class="my-app" :style="{background: $vuetify.theme.themes[theme].primary}">
     <Navigation />
     <Dashboard />
     <Footer />
@@ -24,3 +24,8 @@ export default {
   }
 };
 </script>
+<style>
+.my-app.v-application .primary--text {
+    color: grey !important;
+}
+</style>

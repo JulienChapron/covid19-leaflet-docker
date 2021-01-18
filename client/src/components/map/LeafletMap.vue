@@ -1,36 +1,28 @@
 <template>
-<div style="background-color:white; border-radius:5px; padding:10px;">
-  <l-map :zoom="3" :center="initialLocation">
-    <l-control-layers
-      position="topright"
-      :collapsed="false"
-      :sort-layers="true"
-    />
-    <l-tile-layer
-      v-for="tileProvider in tileProviders"
-      :key="tileProvider.name"
-      :name="tileProvider.name"
-      :visible="tileProvider.visible"
-      :attribution="tileProvider.attribution"
-      :url="tileProvider.url"
-      layer-type="base"
-      :options="{ scrollWheelZoom: false, minZoom: 3, dragging: false }"
-    ></l-tile-layer>
-    <l-marker-cluster
-      :options="clusterOptions"
-      @clusterclick="click()"
-      @ready="ready"
-    >
-      <l-marker
-        @click="getData(country)"
-        v-for="country in locations"
-        :key="country.id"
-        :lat-lng="country.latlng"
+  <div>
+    <l-map :zoom="3" :center="initialLocation">
+      <l-tile-layer
+        :name="this.$vuetify.theme.dark ? 'light' : 'dark'"
+        attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
+        :url="this.$vuetify.theme.dark ? 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png' : 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'"
+        layer-type="base"
+        :options="{ scrollWheelZoom: false, minZoom: 3, dragging: false }"
+      ></l-tile-layer>
+      <l-marker-cluster
+        :options="clusterOptions"
+        @clusterclick="click()"
+        @ready="ready"
       >
-        <l-popup :content="country.text"></l-popup>
-      </l-marker>
-    </l-marker-cluster>
-  </l-map>
+        <l-marker
+          @click="getData(country)"
+          v-for="country in locations"
+          :key="country.id"
+          :lat-lng="country.latlng"
+        >
+          <l-popup :content="country.text"></l-popup>
+        </l-marker>
+      </l-marker-cluster>
+    </l-map>
   </div>
 </template>
 
@@ -40,27 +32,11 @@ import {
   LTileLayer,
   LMarker,
   LPopup,
-  LControlLayers,
 } from "vue2-leaflet";
 import { latLng, Icon } from "leaflet";
 import Vue2LeafletMarkercluster from "@/components/map/plugins/Vue2LeafletMarkercluster.vue";
 import "./plugins/leaflet-tilelayer-subpixel-fix";
 import { mapGetters, mapActions } from "vuex";
-
-const tileProviders = [
-  {
-    name: "Normal",
-    visible: true,
-    url: "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
-    attribution: 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.',
-  },
-  {
-    name: "Dark",
-    visible: false,
-    url: "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
-    attribution: 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.',
-  },
-];
 
 // quick fix if marker icons are missing
 delete Icon.Default.prototype._getIconUrl;
@@ -77,7 +53,6 @@ export default {
     LTileLayer,
     LMarker,
     LPopup,
-    LControlLayers,
     "l-marker-cluster": Vue2LeafletMarkercluster,
   },
   data() {
@@ -85,11 +60,9 @@ export default {
       markers: [],
       locations: [],
       clusterOptions: {
-        color:'#fff'
+        color: "#fff",
       },
       initialLocation: latLng(46.7, 1.7),
-      tileProviders: tileProviders,
-      layersPosition: "topright",
     };
   },
   computed: {
@@ -152,15 +125,22 @@ export default {
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 .marker-cluster-small div {
-    background-color: #2ec4b6;
-    color:white
+  background-color:#2ec4b6;
+  color: white;
 }
 .marker-cluster-medium div {
   background-color: #ff9f1c;
-  color:white
+  color: white;
+  
 }
 .marker-cluster-large div {
   background-color: #e71d36;
-  color:white
+  color: white;
+}
+.leaflet-top, .leaflet-bottom {
+    position: absolute;
+    z-index: 1000;
+    pointer-events: none;
+    font-size:8px;
 }
 </style>

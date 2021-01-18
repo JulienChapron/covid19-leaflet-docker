@@ -1,6 +1,5 @@
 <template>
   <div
-    class="grey darken-2"
   >
     <DataCountryList
       :dataCountry="dataCountry"
