@@ -21,11 +21,14 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 export default {
   name: "DarkModeButton",
   methods: {
+    ...mapActions(['updateTheme']),
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      this.updateTheme(this.$vuetify.theme.dark);
     },
   },
 };

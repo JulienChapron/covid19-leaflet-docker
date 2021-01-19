@@ -1,62 +1,69 @@
 <template>
-  <div id="chart">
-    <div class="toolbar">
-      <v-btn
-        id="one_month"
-        @click="updateData('one_month')"
-        :class="{ active: selection === 'one_month' }"
-      >
-        1M
-      </v-btn>
+  <v-container fluid color="primary" class="overflow-y-auto">
+    <div id="chart">
+      <div class="toolbar">
+        <v-btn
+          class="ml-2"
+          id="one_month"
+          @click="updateData('one_month')"
+          :class="{ active: selection === 'one_month' }"
+        >
+          1M
+        </v-btn>
 
-      <v-btn
-        id="six_months"
-        @click="updateData('six_months')"
-        :class="{ active: selection === 'six_months' }"
-      >
-        6M
-      </v-btn>
+        <v-btn
+          class="ml-2"
+          id="six_months"
+          @click="updateData('six_months')"
+          :class="{ active: selection === 'six_months' }"
+        >
+          6M
+        </v-btn>
 
-      <v-btn
-        id="one_year"
-        @click="updateData('one_year')"
-        :class="{ active: selection === 'one_year' }"
-      >
-        1Y
-      </v-btn>
+        <v-btn
+          class="ml-2"
+          id="one_year"
+          @click="updateData('one_year')"
+          :class="{ active: selection === 'one_year' }"
+        >
+          1Y
+        </v-btn>
 
-      <v-btn
-        id="ytd"
-        @click="updateData('ytd')"
-        :class="{ active: selection === 'ytd' }"
-      >
-        YTD
-      </v-btn>
+        <v-btn
+          class="ml-2"
+          id="ytd"
+          @click="updateData('ytd')"
+          :class="{ active: selection === 'ytd' }"
+        >
+          YTD
+        </v-btn>
 
-      <v-btn
-        id="all"
-        class="btn"
-        @click="updateData('all')"
-        :class="{ active: selection === 'all' }"
-      >
-        ALL
-      </v-btn>
+        <v-btn
+          class="ml-2"
+          id="all"
+          @click="updateData('all')"
+          :class="{ active: selection === 'all' }"
+        >
+          ALL
+        </v-btn>
+      </div>
+
+      <div style="padding:10px;" id="chart-timeline">
+        <apexchart
+          type="area"
+          height="300"
+          ref="chart"
+          :options="chartOptions"
+          :series="series"
+        ></apexchart>
+      </div>
     </div>
-
-    <div style="padding:10px;" id="chart-timeline">
-      <apexchart
-        type="line"
-        height="300"
-        ref="chart"
-        :options="chartOptions"
-        :series="series"
-      ></apexchart>
-    </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
 import VueApexCharts from "vue-apexcharts";
 export default {
   name: "ChartSummaryCountry",
@@ -66,7 +73,11 @@ export default {
   data() {
     return {
       confirmed: [],
-      confirmed_temp: [],
+      deaths: [],
+      recovered: [],
+      dataCovid19: [],
+      currentDate: new Date(),
+      firstDate: '01/01/1970',
       series: [],
       chartOptions: {
         chart: {
@@ -76,6 +87,9 @@ export default {
           zoom: {
             autoScaleYaxis: true,
           },
+        },
+        stroke: {
+          curve: "smooth",
         },
         dataLabels: {
           enabled: false,
@@ -90,6 +104,9 @@ export default {
           tickAmount: 6,
         },
         tooltip: {
+          style: {
+            fontSize: "12px",
+          },
           x: {
             format: "dd MMM yyyy",
           },
@@ -98,23 +115,41 @@ export default {
       selection: "one_year",
     };
   },
+  computed: {
+    ...mapGetters(["theme"]),
+  },
+  watch: {
+    theme() {
+      this.updateChartTheme();
+    },
+  },
   created() {
     axios
       .get(
-        "https://api.covid19api.com/country/france/status/confirmed?from=2020-03-01T00:00:00Z&to=2021-01-01T00:00:00Z"
+        `https://api.covid19api.com/total/country/france?from=2020-03-01T00:00:00Z&to=` +
+          this.currentDate.toJSON()
       )
       .then(
         (response) => (
-          (this.confirmed_temp = response.data),
-          this.confirmed_temp.map((item) => {
+          (this.dataCovid19 = response.data),
+          this.dataCovid19.map((item) => {
             var date = new Date(item.Date);
-            this.confirmed.push([date.getTime(), item.Cases]);
+            this.confirmed.push([date.getTime(), item.Confirmed]);
+            this.deaths.push([date.getTime(), item.Deaths]);
+            this.recovered.push([date.getTime(), item.Recovered]);
           }),
-          console.log(this.confirmed),
           (this.series = [
             {
               name: "confirmed",
               data: this.confirmed,
+            },
+            {
+              name: "deaths",
+              data: this.deaths,
+            },
+            {
+              name: "recovered",
+              data: this.recovered,
             },
           ]),
           (this.chartOptions = {
@@ -123,18 +158,25 @@ export default {
               min: new Date(this.confirmed[0]).getTime(),
               tickAmount: 6,
             },
-            fill: {
-              type: "gradient",
-              gradient: {
-                opacityFrom: 0.6,
-                opacityTo: 0.8,
-              },
-            },
           })
         )
       );
   },
   methods: {
+    updateChartTheme() {
+      this.chartOptions = {
+        theme: {
+          mode: this.$vuetify.theme.dark ? "dark" : "light",
+          palette: "palette2",
+          monochrome: {
+            enabled: false,
+            color: "#255aee",
+            shadeTo: "light",
+            shadeIntensity: 0.65,
+          },
+        },
+      };
+    },
     updateData: function(timeline) {
       this.selection = timeline;
 
@@ -165,8 +207,8 @@ export default {
           break;
         case "all":
           this.$refs.chart.zoomX(
-            new Date("23 Jan 2012").getTime(),
-            new Date("27 Feb 2013").getTime()
+            new Date(this.confirmed[0][0]).getTime(),
+            new Date(this.currentDate).getTime()
           );
           break;
         default:

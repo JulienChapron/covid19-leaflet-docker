@@ -1,5 +1,5 @@
 <template>
-  <v-container color="primary" class="overflow-y-auto">
+  <v-container fluid color="primary" class="overflow-y-auto">
     <h3>{{summaryCountry.Date}}</h3>
     <h2>{{summaryCountry.Country}}</h2>
     <p>New confirmed: {{ summaryCountry.NewConfirmed }}</p>
