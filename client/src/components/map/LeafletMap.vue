@@ -4,7 +4,11 @@
       <l-tile-layer
         :name="this.$vuetify.theme.dark ? 'light' : 'dark'"
         attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
-        :url="this.$vuetify.theme.dark ? 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png' : 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'"
+        :url="
+          this.$vuetify.theme.dark
+            ? 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png'
+            : 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'
+        "
         layer-type="base"
         :options="{ scrollWheelZoom: false, minZoom: 3, dragging: false }"
       ></l-tile-layer>
@@ -27,12 +31,7 @@
 </template>
 
 <script>
-import {
-  LMap,
-  LTileLayer,
-  LMarker,
-  LPopup,
-} from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import { latLng, Icon } from "leaflet";
 import Vue2LeafletMarkercluster from "@/components/map/plugins/Vue2LeafletMarkercluster.vue";
 import "./plugins/leaflet-tilelayer-subpixel-fix";
@@ -80,6 +79,17 @@ export default {
     setTimeout(() => {
       this.$nextTick(() => {
         this.clusterOptions = { disableClusteringAtZoom: 11 };
+
+        // THEME DARK OR LIGHT
+        if (document.getElementsByClassName("marker-cluster-medium")) {
+          let nb = document.getElementsByClassName("marker-cluster-medium")
+            .length;
+          for (let i = 0; i < nb; i++) {
+            document.getElementsByClassName("marker-cluster-medium")[
+              i
+            ].lastElementChild.style.backgroundColor = "#e71d36";
+          }
+        }
       });
     }, 5000);
   },
@@ -125,22 +135,22 @@ export default {
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 .marker-cluster-small div {
-  background-color:#2ec4b6;
+  background-color: #2ec4b6;
   color: white;
 }
 .marker-cluster-medium div {
   background-color: #ff9f1c;
   color: white;
-  
 }
 .marker-cluster-large div {
   background-color: #e71d36;
   color: white;
 }
-.leaflet-top, .leaflet-bottom {
-    position: absolute;
-    z-index: 1000;
-    pointer-events: none;
-    font-size:8px;
+.leaflet-top,
+.leaflet-bottom {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+  font-size: 8px;
 }
 </style>

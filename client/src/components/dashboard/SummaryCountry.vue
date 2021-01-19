@@ -1,6 +1,6 @@
 <template>
   <v-container fluid color="primary" class="overflow-y-auto">
-    <h3>{{summaryCountry.Date}}</h3>
+    <h3>{{new Date(summaryCountry.Date).toUTCString()}}</h3>
     <h2>{{summaryCountry.Country}}</h2>
     <p>New confirmed: {{ summaryCountry.NewConfirmed }}</p>
     <p>Total confirmed: {{ summaryCountry.TotalConfirmed }}</p>

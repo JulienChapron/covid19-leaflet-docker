@@ -1,6 +1,6 @@
 <template>
   <v-container color="primary" class="overflow-y-auto">
-    <h3>{{date}}</h3>
+    <h3>{{new Date(date).toUTCString()}}</h3>
     <h2>World</h2>
     <p>New confirmed: {{ summaryGlobal.NewConfirmed }}</p>
     <p>Total confirmed: {{ summaryGlobal.TotalConfirmed }}</p>

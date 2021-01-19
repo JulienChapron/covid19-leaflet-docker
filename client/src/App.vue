@@ -1,5 +1,5 @@
 <template>
-  <v-app class="my-app" :style="{background: $vuetify.theme.themes[theme].primary}">
+  <v-app class="my-app" :style="{background: $vuetify.theme.themes[theme].background}">
     <Navigation />
     <Dashboard />
     <Footer />
