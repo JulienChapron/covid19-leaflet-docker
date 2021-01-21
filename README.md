@@ -1,6 +1,6 @@
 # Simple COVID-19 outbreak evolution dashboard
 
-![alt text](https://raw.githubusercontent.com/alpha77788998778999877855/covid19-leaflet-docker/main/readme/covid19-leaflet-docker.png)
+![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/covid19-leaflet-docker.png)
 
 ## Project Description
 
@@ -25,7 +25,7 @@ yarn serve
 Get the code
 
 ```bash
-https://github.com/alpha77788998778999877855/covid19-leaflet-docker.git
+https://github.com/JulienChapron/covid19-leaflet-docker.git
 ```
 
 Go to folder `covid19-leaflet-docker`
