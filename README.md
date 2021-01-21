@@ -2,6 +2,9 @@
 
 ![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/covid19-leaflet-docker.png)
 
+### Theme
+![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/covid19-leaflet-docker-theme.gif)
+
 ## Project Description
 
 Day by day progression of reported number of cases, with a synoptic view of cases deaths, recovered and confirmed by country.
