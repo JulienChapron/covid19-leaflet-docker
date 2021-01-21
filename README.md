@@ -1,6 +1,6 @@
 # Simple COVID-19 outbreak evolution dashboard
 
-![alt text](https://raw.githubusercontent.com/alpha77788998778999877855/port-scanner-docker/master/markdown/img/simple-port-scanner.gif)
+![alt text](https://raw.githubusercontent.com/alpha77788998778999877855/covid19-leaflet-docker/main/readme/covid19-leaflet-docker.png)
 
 ## Project Description
 
