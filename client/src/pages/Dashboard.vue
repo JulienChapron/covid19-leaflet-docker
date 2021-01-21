@@ -38,9 +38,6 @@ export default {
       drawer: true,
     };
   },
-  created() {
-    this.$store.dispatch("getDataMarkersCountries");
-  },
   components: {
     LeafletMap,
     SummaryGlobal,

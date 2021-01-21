@@ -1,6 +1,10 @@
 <template>
   <div>
-    <l-map :zoom="zoom" :center="initialLocation">
+    <l-map
+      :options="{ zoomControl: false }"
+      :zoom="zoom"
+      :center="initialLocation"
+    >
       <l-tile-layer
         :name="this.$vuetify.theme.dark ? 'light' : 'dark'"
         attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
@@ -59,11 +63,11 @@ export default {
     return {
       markers: [],
       locations: [],
-      clusterOptions: {
-      },
+      clusterOptions: {},
       initialLocation: latLng(46.7, 1.7),
       zoom: 6,
       countriesJsonPosition: countries,
+      error: null
     };
   },
   computed: {
@@ -71,13 +75,14 @@ export default {
   },
   watch: {
     country() {
-      if (this.country !== undefined && this.country !== null && this.country.Lat) {
+      if (this.country !== undefined && this.country !== null) {
         this.countryChosenLongitudeLatitude();
       }
-    }
+    },
   },
   mounted() {
     this.markersCountries();
+    this.countryChosenLongitudeLatitude();
     setTimeout(() => {
       this.$nextTick(() => {
         this.clusterOptions = { disableClusteringAtZoom: 11 };
@@ -92,16 +97,21 @@ export default {
       this.updateCountry(country);
     },
     countryChosenLongitudeLatitude() {
+      this.error = null
       axios
         .get(`https://api.covid19api.com/dayone/country/` + this.country)
-        .then(
-          (response) =>
-            (this.initialLocation = latLng(
+        .then((response) => {
+          console.log(response.data[0])
+          if (response.data[0]) {
+            this.initialLocation = latLng(
               response.data[0].Lat,
               response.data[0].Lon
-            )),
-          (this.zoom = 6)
-        );
+            );
+            this.zoom = 6;
+          } else {
+            this.error = 'an error is occured'
+          }
+        });
     },
     markersCountries() {
       for (
@@ -125,18 +135,6 @@ export default {
 </script>
 
 <style>
-.marker-cluster-small div {
-  background-color: #cdfffc;
-  color: black;
-}
-.marker-cluster-medium div {
-  background-color: #ffc764;
-  color: black;
-}
-.marker-cluster-large div {
-  background-color: #ff577f;
-  color: white;
-}
 @import "~leaflet/dist/leaflet.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
