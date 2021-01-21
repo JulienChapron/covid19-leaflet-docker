@@ -1,9 +1,10 @@
 # Simple COVID-19 outbreak evolution dashboard
 
-![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/covid19-leaflet-docker.png)
-
 ### Theme
 ![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/covid19-leaflet-docker-theme.gif)
+
+### Autocomplete
+![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/covid19-leaflet-docker-autocomplete.gif)
 
 ## Project Description
 
