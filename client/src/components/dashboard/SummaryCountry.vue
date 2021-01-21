@@ -1,7 +1,7 @@
 <template>
   <v-container fluid color="primary" class="overflow-y-auto">
-    <h3>{{new Date(summaryCountry.Date).toUTCString()}}</h3>
-    <h2>{{summaryCountry.Country}}</h2>
+    <h3>{{ new Date(summaryCountry.Date).toUTCString() }}</h3>
+    <h2>{{ summaryCountry.Country }}</h2>
     <p>New confirmed: {{ summaryCountry.NewConfirmed }}</p>
     <p>Total confirmed: {{ summaryCountry.TotalConfirmed }}</p>
     <p>New deaths: {{ summaryCountry.NewDeaths }}</p>
@@ -12,6 +12,7 @@
 </template>
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
   name: "SummaryCountry",
   data() {
@@ -19,13 +20,26 @@ export default {
       summaryCountry: {},
     };
   },
+  watch: {
+    country() {
+      this.summaryCountryFunction();
+    },
+  },
+  computed: {
+    ...mapGetters(["country"]),
+  },
   mounted() {
-    axios.get("https://api.covid19api.com/summary").then(
-      (response) =>
-        (this.summaryGlobal = response.data.Countries.map((country) => {
-          if (country.Country === "France") this.summaryCountry = country;
-        }))
-    );
+    this.summaryCountryFunction();
+  },
+  methods: {
+    summaryCountryFunction() {
+      axios.get("https://api.covid19api.com/summary").then(
+        (response) =>
+          (this.summaryGlobal = response.data.Countries.map((country) => {
+            if (country.Country === this.country) this.summaryCountry = country;
+          }))
+      );
+    },
   },
 };
 </script>
