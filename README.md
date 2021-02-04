@@ -16,6 +16,11 @@
 
 <https://vue2-leaflet.netlify.app/>
 
+## Tech Stack
+
+Vuejs <https://vuejs.org>
+Vuetify <https://vuetifyjs.com/en/>
+
 ## Project Description
 
 Day by day progression of reported number of cases, with a synoptic view of cases deaths, recovered and confirmed by country.
