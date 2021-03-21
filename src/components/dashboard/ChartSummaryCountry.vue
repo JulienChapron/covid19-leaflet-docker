@@ -143,10 +143,10 @@ export default {
         .then(
           (response) => (
             (this.dataCovid19 = response.data),
-            this.confirmed = [],
-            this.deaths = [],
-            this.recovered = [],
-            this.series = [],
+            (this.confirmed = []),
+            (this.deaths = []),
+            (this.recovered = []),
+            (this.series = []),
             this.dataCovid19.map((item) => {
               var date = new Date(item.Date);
               this.confirmed.push([date.getTime(), item.Confirmed]);
@@ -166,14 +166,7 @@ export default {
                 name: "recovered",
                 data: this.recovered,
               },
-            ]),
-            (this.chartOptions = {
-              xaxis: {
-                type: "datetime",
-                min: new Date(this.confirmed[0]).getTime(),
-                tickAmount: 6,
-              },
-            })
+            ])
           )
         );
     },
