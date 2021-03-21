@@ -1,5 +1,5 @@
 # Simple COVID-19 outbreak evolution dashboard
-[![Build Status](https://travis-ci.com/github/JulienChapron/covid19-leaflet-docker.svg)]
+[![Build Status](https://travis-ci.com/github/JulienChapron/covid19-leaflet-docker.svg?branch=master))]
 
 ### Theme
 ![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/covid19-leaflet-docker-theme.gif)
