@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --watch",
     "lint": "vue-cli-service lint",
     "build:prod": "vue-cli-service build --mode production",
     "build:staging": "vue-cli-service build --mode staging"
@@ -45,6 +45,8 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "fibers": "^5.0.0",
+    "jest-canvas-mock": "^2.3.1",
+    "jest-transform-stub": "^2.0.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"

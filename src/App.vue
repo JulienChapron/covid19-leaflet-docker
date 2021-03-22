@@ -1,5 +1,9 @@
-<template>
-  <v-app class="my-app" :style="{background: $vuetify.theme.themes[theme].background}">
+<template id="app"
+>
+  <v-app
+    class="my-app"
+    :style="{ background: $vuetify.theme.themes[theme].background }"
+  >
     <Navigation />
     <Dashboard />
     <Footer />
@@ -12,20 +16,21 @@ import Footer from "@/layouts/Footer";
 import Dashboard from "@/pages/Dashboard";
 
 export default {
+  name:"App",
   components: {
     Navigation,
     Dashboard,
     Footer,
   },
-  computed:{
-    theme(){
-      return (this.$vuetify.theme.dark) ? 'dark' : 'light'
-    }
-  }
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? "dark" : "light";
+    },
+  },
 };
 </script>
 <style>
 .my-app.v-application .primary--text {
-    color: grey !important;
+  color: grey !important;
 }
 </style>
