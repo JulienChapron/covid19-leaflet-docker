@@ -1,6 +1,224 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1616375527985" clover="3.2.0">
-  <project timestamp="1616375527985" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1616399075043" clover="3.2.0">
+  <project timestamp="1616399075043" name="All files">
+    <metrics statements="143" coveredstatements="36" conditionals="40" coveredconditionals="5" methods="55" coveredmethods="2" elements="238" coveredelements="43" complexity="0" loc="143" ncloc="143" packages="10" files="15" classes="15"/>
+    <package name="src">
+      <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="App.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/App.vue">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="27" count="1" type="cond" truecount="1" falsecount="1"/>
+      </file>
+    </package>
+    <package name="src.components.dashboard">
+      <metrics statements="41" coveredstatements="6" conditionals="16" coveredconditionals="0" methods="16" coveredmethods="0"/>
+      <file name="ChartSummaryCountry.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/dashboard/ChartSummaryCountry.vue">
+        <metrics statements="31" coveredstatements="3" conditionals="14" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="126" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="152" count="0" type="stmt"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="154" count="0" type="stmt"/>
+        <line num="174" count="0" type="stmt"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="188" count="0" type="stmt"/>
+        <line num="189" count="0" type="stmt"/>
+        <line num="191" count="0" type="stmt"/>
+        <line num="192" count="0" type="stmt"/>
+        <line num="196" count="0" type="stmt"/>
+        <line num="198" count="0" type="stmt"/>
+        <line num="199" count="0" type="stmt"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="205" count="0" type="stmt"/>
+        <line num="206" count="0" type="stmt"/>
+        <line num="210" count="0" type="stmt"/>
+        <line num="212" count="0" type="stmt"/>
+        <line num="213" count="0" type="stmt"/>
+        <line num="217" count="0" type="stmt"/>
+        <line num="219" count="0" type="stmt"/>
+        <line num="223" count="0" type="stmt"/>
+      </file>
+      <file name="SummaryCountry.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/dashboard/SummaryCountry.vue">
+        <metrics statements="7" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+      <file name="SummaryGlobal.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/dashboard/SummaryGlobal.vue">
+        <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.map">
+      <metrics statements="29" coveredstatements="9" conditionals="6" coveredconditionals="0" methods="11" coveredmethods="0"/>
+      <file name="LeafletMap.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/map/LeafletMap.vue">
+        <metrics statements="29" coveredstatements="9" conditionals="6" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="78" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="105" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="122" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.map.plugins">
+      <metrics statements="27" coveredstatements="8" conditionals="9" coveredconditionals="4" methods="9" coveredmethods="1"/>
+      <file name="Vue2LeafletMarkercluster.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/map/plugins/Vue2LeafletMarkercluster.vue">
+        <metrics statements="19" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="0" type="stmt"/>
+      </file>
+      <file name="leaflet-tilelayer-subpixel-fix.js" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/map/plugins/leaflet-tilelayer-subpixel-fix.js">
+        <metrics statements="8" coveredstatements="4" conditionals="5" coveredconditionals="4" methods="2" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="cond" truecount="4" falsecount="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.navigation">
+      <metrics statements="16" coveredstatements="3" conditionals="5" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="Autocomplete.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/navigation/Autocomplete.vue">
+        <metrics statements="13" coveredstatements="2" conditionals="5" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+      </file>
+      <file name="DarkModeButton.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/navigation/DarkModeButton.vue">
+        <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.layouts">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="Navigation.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/layouts/Navigation.vue">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages">
+      <metrics statements="6" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="Dashboard.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/pages/Dashboard.vue">
+        <metrics statements="6" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+    </package>
+    <package name="src.plugins">
+      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="vuetify.js" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/plugins/vuetify.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.store">
+      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.js" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/store/index.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.store.modules">
+      <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="map.js" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/store/modules/map.js">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="navigation.js" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/store/modules/navigation.js">
+        <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>
