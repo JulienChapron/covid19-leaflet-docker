@@ -51,7 +51,7 @@ Icon.Default.mergeOptions({
 });
 
 export default {
-  name: "Map",
+  name: "LeafletMap",
   components: {
     LMap,
     LTileLayer,

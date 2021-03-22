@@ -1,5 +1,5 @@
 <template>
-  <v-container color="primary" class="overflow-y-auto">
+  <v-container fluid color="primary" class="overflow-y-auto">
     <h3>{{new Date(date).toUTCString()}}</h3>
     <h2>World</h2>
     <p>New confirmed: {{ summaryGlobal.NewConfirmed }}</p>
