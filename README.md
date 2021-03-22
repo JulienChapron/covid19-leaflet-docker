@@ -30,6 +30,11 @@ Day by day progression of reported number of cases, with a synoptic view of case
 
 <https://postman-toolboxes.github.io/covid-19/#featured-collections>
 
+## Unit tests with Jest and Vue Test Utils
+
+Jest <https://jestjs.io/>
+Vue Test Utils <https://vue-test-utils.vuejs.org/>
+
 ## Installation and run the app 🚀🚀
 
 Get the code
