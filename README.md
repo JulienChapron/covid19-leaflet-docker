@@ -1,7 +1,7 @@
 # Simple COVID-19 outbreak evolution dashboard
 ![Build Status](https://travis-ci.com/JulienChapron/covid19-leaflet-docker.svg?branch=main)
-<a href="https://github.com/facebook/jest/blob/master/LICENSE">
-   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Jest is released under the MIT license." />
+<a href="https://github.com/JulienChapron/covid19-leaflet-docker/master/LICENSE">
+   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="covid19-leaflet-docker is released under the MIT license." />
  </a>
 
 ### Theme
