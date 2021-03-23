@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1616495914962" clover="3.2.0">
-  <project timestamp="1616495914962" name="All files">
-    <metrics statements="143" coveredstatements="45" conditionals="40" coveredconditionals="5" methods="55" coveredmethods="7" elements="238" coveredelements="57" complexity="0" loc="143" ncloc="143" packages="10" files="15" classes="15"/>
+<coverage generated="1616539967906" clover="3.2.0">
+  <project timestamp="1616539967906" name="All files">
+    <metrics statements="145" coveredstatements="45" conditionals="40" coveredconditionals="5" methods="55" coveredmethods="7" elements="240" coveredelements="57" complexity="0" loc="145" ncloc="145" packages="10" files="15" classes="15"/>
     <package name="src">
       <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="App.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/App.vue">
@@ -13,7 +13,7 @@
       </file>
     </package>
     <package name="src.components.dashboard">
-      <metrics statements="41" coveredstatements="9" conditionals="16" coveredconditionals="0" methods="16" coveredmethods="3"/>
+      <metrics statements="43" coveredstatements="9" conditionals="16" coveredconditionals="0" methods="16" coveredmethods="3"/>
       <file name="ChartSummaryCountry.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/dashboard/ChartSummaryCountry.vue">
         <metrics statements="31" coveredstatements="3" conditionals="14" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="64" count="2" type="stmt"/>
@@ -49,14 +49,16 @@
         <line num="223" count="0" type="stmt"/>
       </file>
       <file name="SummaryCountry.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/dashboard/SummaryCountry.vue">
-        <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="3"/>
+        <metrics statements="9" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="3"/>
         <line num="22" count="3" type="stmt"/>
         <line num="23" count="3" type="stmt"/>
         <line num="27" count="2" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="40" count="2" type="stmt"/>
         <line num="44" count="2" type="stmt"/>
-        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
       <file name="SummaryGlobal.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/components/dashboard/SummaryGlobal.vue">
         <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>

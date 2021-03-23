@@ -40,12 +40,12 @@ export default {
     this.summaryCountryFunction();
   },
   methods: {
-    summaryCountryFunction() {
-      axios.get("https://api.covid19api.com/summary").then((response) =>
-        response.data.Countries.map((country) => {
-          if (country.Country === this.country) this.summaryCountry = country;
-        })
-      );
+    async summaryCountryFunction() {
+      const response = await axios.get("https://api.covid19api.com/summary");
+      const { Countries } = await response.data;
+      Countries.map((country) => {
+        if (country.Country === this.country) this.summaryCountry = country;
+      });
     },
   },
 };
