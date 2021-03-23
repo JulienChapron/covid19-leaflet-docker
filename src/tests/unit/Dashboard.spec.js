@@ -16,20 +16,20 @@ describe("Dashboard.vue", () => {
     vuetify = new Vuetify();
   });
 
-  it("should have a v-container", () => {
+  it("Find components", () => {
     const wrapper = shallowMount(Dashboard, {
       localVue,
       vuetify,
     });
-    const summaryCountry = wrapper.findComponent({ name: "SummaryCountry" }); // => finds Bar by `name`
+    const summaryCountry = wrapper.findComponent({ name: "SummaryCountry" });
     expect(summaryCountry.exists()).toBe(true);
     const chartSummaryCountry = wrapper.findComponent({
       name: "ChartSummaryCountry",
-    }); // => finds Bar by `name`
+    });
     expect(chartSummaryCountry.exists()).toBe(true);
-    const summaryGlobal = wrapper.findComponent({ name: "SummaryGlobal" }); // => finds Bar by `name`
+    const summaryGlobal = wrapper.findComponent({ name: "SummaryGlobal" });
     expect(summaryGlobal.exists()).toBe(true);
-    const leafletMap = wrapper.findComponent({ name: "LeafletMap" }); // => finds Bar by `name`
+    const leafletMap = wrapper.findComponent({ name: "LeafletMap" });
     expect(leafletMap.exists()).toBe(true);
   });
 });
