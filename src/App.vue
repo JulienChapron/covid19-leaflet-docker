@@ -30,6 +30,9 @@ export default {
 };
 </script>
 <style>
+.myapp{
+  position:relative;
+}
 .my-app.v-application .primary--text {
   color: grey !important;
 }

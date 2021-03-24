@@ -1,52 +1,39 @@
 <template>
   <v-container fluid color="primary" class="overflow-y-auto">
-    <h3 class="date">{{ new Date(summaryCountry.Date).toUTCString() }}</h3>
-    <h2 class="country">{{ summaryCountry.Country }}</h2>
+    <h3 class="date">{{ new Date(getSummaryCountry.Date).toUTCString() }}</h3>
+    <h2 class="country">{{ getSummaryCountry.Country }}</h2>
     <p class="new-confirmed">
-      New confirmed: {{ summaryCountry.NewConfirmed }}
+      New confirmed: {{ getSummaryCountry.NewConfirmed }}
     </p>
     <p class="total-confirmed">
-      Total confirmed: {{ summaryCountry.TotalConfirmed }}
+      Total confirmed: {{ getSummaryCountry.TotalConfirmed }}
     </p>
-    <p class="new-deaths">New deaths: {{ summaryCountry.NewDeaths }}</p>
-    <p class="total-deaths">Total deaths: {{ summaryCountry.TotalDeaths }}</p>
+    <p class="new-deaths">New deaths: {{ getSummaryCountry.NewDeaths }}</p>
+    <p class="total-deaths">
+      Total deaths: {{ getSummaryCountry.TotalDeaths }}
+    </p>
     <p class="new-recovered">
-      New recovered: {{ summaryCountry.NewRecovered }}
+      New recovered: {{ getSummaryCountry.NewRecovered }}
     </p>
     <p class="total-recovered">
-      Total recovered: {{ summaryCountry.TotalRecovered }}
+      Total recovered: {{ getSummaryCountry.TotalRecovered }}
     </p>
   </v-container>
 </template>
 <script>
-import axios from "axios";
 import { mapGetters } from "vuex";
 export default {
   name: "SummaryCountry",
-  data() {
-    return {
-      summaryCountry: {},
-    };
-  },
   watch: {
-    country() {
-      this.summaryCountryFunction();
+    getCountry() {
+      this.$store.dispatch("summaryCountry");
     },
   },
   computed: {
-    ...mapGetters(["country"]),
+    ...mapGetters(["getCountry", "getSummaryCountry"]),
   },
-  mounted() {
-    this.summaryCountryFunction();
-  },
-  methods: {
-    async summaryCountryFunction() {
-      const response = await axios.get("https://api.covid19api.com/summary");
-      const { Countries } = await response.data;
-      Countries.map((country) => {
-        if (country.Country === this.country) this.summaryCountry = country;
-      });
-    },
+  async mounted() {
+    await this.$store.dispatch("summaryCountry");
   },
 };
 </script>

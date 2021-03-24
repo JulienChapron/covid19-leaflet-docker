@@ -1,6 +1,7 @@
 <template>
   <v-container fluid color="primary">
     <div id="chart">
+      <h2>{{getCountry}}</h2>
       <div class="toolbar">
         <v-btn
           class="ml-2"
@@ -102,7 +103,7 @@ export default {
           min: new Date("01 Jan 2020").getTime(),
           tickAmount: 6,
         },
-        colors: ["#555b6e", "#89b0ae", "#bee3db"],
+        colors: ["#9ede73", "#be0000", "#e48900"],
         tooltip: {
           style: {
             fontSize: "12px",
@@ -116,14 +117,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["theme", "country"]),
+    ...mapGetters(["theme", "getCountry"]),
   },
   watch: {
     theme() {
       this.updateChartTheme();
     },
-    country() {
-      if (this.country) {
+    getCountry() {
+      if (this.getCountry) {
         this.updateOptionsChart();
       }
     },
@@ -132,43 +133,37 @@ export default {
     this.updateOptionsChart();
   },
   methods: {
-    updateOptionsChart() {
-      axios
-        .get(
-          `https://api.covid19api.com/total/country/` +
-            this.country +
-            `?from=2020-03-01T00:00:00Z&to=` +
-            this.currentDate.toJSON()
-        )
-        .then(
-          (response) => (
-            (this.dataCovid19 = response.data),
-            (this.confirmed = []),
-            (this.deaths = []),
-            (this.recovered = []),
-            (this.series = []),
-            this.dataCovid19.map((item) => {
-              var date = new Date(item.Date);
-              this.confirmed.push([date.getTime(), item.Confirmed]);
-              this.deaths.push([date.getTime(), item.Deaths]);
-              this.recovered.push([date.getTime(), item.Recovered]);
-            }),
-            (this.series = [
-              {
-                name: "confirmed",
-                data: this.confirmed,
-              },
-              {
-                name: "deaths",
-                data: this.deaths,
-              },
-              {
-                name: "recovered",
-                data: this.recovered,
-              },
-            ])
-          )
-        );
+    async updateOptionsChart() {
+      const response = await axios.get(
+        `${process.env.VUE_APP_API_TOTAL_COUNTRY}${
+          this.getCountry
+        }?from=2020-03-01T00:00:00Z&to=${this.currentDate.toJSON()}`
+      );
+      this.dataCovid19 = await response.data;
+      this.confirmed = [];
+      this.deaths = [];
+      this.recovered = [];
+      this.series = [];
+      this.dataCovid19.map((item) => {
+        var date = new Date(item.Date);
+        this.confirmed.push([date.getTime(), item.Confirmed]);
+        this.deaths.push([date.getTime(), item.Deaths]);
+        this.recovered.push([date.getTime(), item.Recovered]);
+      }),
+        (this.series = [
+          {
+            name: "confirmed",
+            data: this.confirmed,
+          },
+          {
+            name: "deaths",
+            data: this.deaths,
+          },
+          {
+            name: "recovered",
+            data: this.recovered,
+          },
+        ]);
     },
     updateChartTheme() {
       this.chartOptions = {
@@ -180,7 +175,7 @@ export default {
         },
         colors: this.$vuetify.theme.dark
           ? ["#F44336", "#E91E63", "#9C27B0"]
-          : ["#555b6e", "#89b0ae", "#bee3db"],
+          : ["#9ede73", "#be0000", "#e48900"],
       };
     },
     updateData: function(timeline) {

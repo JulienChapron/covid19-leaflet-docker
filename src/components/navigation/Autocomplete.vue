@@ -31,18 +31,15 @@ export default {
   watch: {
     search(val) {
       val && val !== this.select && this.querySelections(val);
-      this.updateCountry(this.select);
-    }
+      this.country(this.select);
+    },
   },
-  mounted() {
-    axios
-      .get("https://api.covid19api.com/countries")
-      .then((response) => (
-        this.countries = response.data
-      ));
+  async mounted() {
+    const response = await axios.get(process.env.VUE_APP_API_COUNTRIES);
+    this.countries = response.data;
   },
   methods: {
-    ...mapActions(["updateCountry"]),
+    ...mapActions(["country"]),
     querySelections(v) {
       this.loading = true;
       setTimeout(() => {

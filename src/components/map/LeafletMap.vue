@@ -67,15 +67,15 @@ export default {
       initialLocation: latLng(46.7, 1.7),
       zoom: 6,
       countriesJsonPosition: countries,
-      error: null
+      error: null,
     };
   },
   computed: {
-    ...mapGetters(["country"]),
+    ...mapGetters(["getCountry"]),
   },
   watch: {
-    country() {
-      if (this.country !== undefined && this.country !== null) {
+    getCountry() {
+      if (this.getCountry !== undefined && this.getCountry !== null) {
         this.countryChosenLongitudeLatitude();
       }
     },
@@ -90,28 +90,26 @@ export default {
     }, 5000);
   },
   methods: {
-    ...mapActions(["updateCountry"]),
+    ...mapActions(["country"]),
     click: (e) => e,
     ready: (e) => e,
     setCountry(country) {
-      this.updateCountry(country);
+      this.country(country);
     },
-    countryChosenLongitudeLatitude() {
-      this.error = null
-      axios
-        .get(`https://api.covid19api.com/dayone/country/` + this.country)
-        .then((response) => {
-          console.log(response.data[0])
-          if (response.data[0]) {
-            this.initialLocation = latLng(
-              response.data[0].Lat,
-              response.data[0].Lon
-            );
-            this.zoom = 6;
-          } else {
-            this.error = 'an error is occured'
-          }
-        });
+    async countryChosenLongitudeLatitude() {
+      this.error = null;
+      const response = await axios.get(
+        `${process.env.VUE_APP_API_DAYONE}${this.getCountry}`
+      );
+      if (response.data[0]) {
+        this.initialLocation = latLng(
+          response.data[0].Lat,
+          response.data[0].Lon
+        );
+        this.zoom = 6;
+      } else {
+        this.error = "an error is occured";
+      }
     },
     markersCountries() {
       for (

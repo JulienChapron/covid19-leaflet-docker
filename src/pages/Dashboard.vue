@@ -3,24 +3,24 @@
     <v-row>
       <v-col cols="12" xs="12" sm="12" md="12" lg="4">
         <v-card color="secondary" elevation="4">
-          <SummaryCountry style="height:41vh" />
+          <SummaryGlobal class="card-dashboard" />
         </v-card>
       </v-col>
       <v-col cols="12" xs="12" sm="12" md="12" lg="8">
         <v-card color="secondary" elevation="4">
-          <ChartSummaryCountry style="height:41vh" />
+          <ChartSummaryCountry class="card-dashboard" />
         </v-card>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" xs="12" sm="12" md="12" lg="4">
         <v-card color="secondary" elevation="4">
-          <SummaryGlobal style="height:40vh" />
+          <SummaryCountry class="card-dashboard" />
         </v-card>
       </v-col>
       <v-col cols="12" xs="12" sm="12" md="12" lg="8">
         <v-card color="secondary" elevation="4">
-          <LeafletMap style="width:auto !important;height:40vh;" />
+          <LeafletMap id="card-leaflet" class="card-dashboard" />
         </v-card>
       </v-col>
     </v-row>
@@ -51,3 +51,21 @@ export default {
   },
 };
 </script>
+<style scoped>
+@media (min-width: 721px) {
+  .card-dashboard {
+    width: auto !important;
+    height: 42.5vh !important;
+  }
+}
+@media (max-width: 720px) {
+  .card-dashboard {
+    width: auto !important;
+    height: auto !important;
+  }
+  #card-leaflet {
+    width: auto !important;
+    height: 60vh !important;
+  }
+}
+</style>

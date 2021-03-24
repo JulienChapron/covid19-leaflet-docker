@@ -1,34 +1,24 @@
 <template>
   <v-container fluid color="primary" class="overflow-y-auto">
-    <h3>{{new Date(date).toUTCString()}}</h3>
+    <h3>{{ new Date(getDateSummaryGlobal).toUTCString() }}</h3>
     <h2>World</h2>
-    <p>New confirmed: {{ summaryGlobal.NewConfirmed }}</p>
-    <p>Total confirmed: {{ summaryGlobal.TotalConfirmed }}</p>
-    <p>New deaths: {{ summaryGlobal.NewDeaths }}</p>
-    <p>Total deaths: {{ summaryGlobal.TotalDeaths }}</p>
-    <p>New recovered: {{ summaryGlobal.NewRecovered }}</p>
-    <p>Total recovered: {{ summaryGlobal.TotalRecovered }}</p>
+    <p>New confirmed: {{ getSummaryGlobal.NewConfirmed }}</p>
+    <p>Total confirmed: {{ getSummaryGlobal.TotalConfirmed }}</p>
+    <p>New deaths: {{ getSummaryGlobal.NewDeaths }}</p>
+    <p>Total deaths: {{ getSummaryGlobal.TotalDeaths }}</p>
+    <p>New recovered: {{ getSummaryGlobal.NewRecovered }}</p>
+    <p>Total recovered: {{ getSummaryGlobal.TotalRecovered }}</p>
   </v-container>
 </template>
 <script>
-import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
   name: "SummaryGlobal",
-  data() {
-    return {
-      summaryGlobal: {},
-      date: "",
-    };
+  computed: {
+    ...mapGetters(["getSummaryGlobal", "getDateSummaryGlobal"]),
   },
-  mounted() {
-    axios
-      .get("https://api.covid19api.com/summary")
-      .then(
-        (response) => (
-          (this.summaryGlobal = response.data.Global),
-          (this.date = response.data.Date)
-        )
-      );
+  async created() {
+    await await this.$store.dispatch("summaryGlobal");
   },
 };
 </script>
