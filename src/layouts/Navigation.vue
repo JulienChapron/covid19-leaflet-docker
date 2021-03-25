@@ -1,7 +1,7 @@
 <template>
   <v-card style="z-index:999;" class="overflow-hidden">
     <v-app-bar color="secondary">
-      <v-toolbar-title>covid19-leaflet-docker v0.1</v-toolbar-title>
+      <v-toolbar-title>{{ version }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <Autocomplete />
       <DarkModeButton />
@@ -16,7 +16,12 @@ export default {
   name: "Navigation",
   components: {
     DarkModeButton,
-    Autocomplete
+    Autocomplete,
+  },
+  data() {
+    return {
+      version: process.env.VUE_APP_VERSION,
+    };
   },
 };
 </script>

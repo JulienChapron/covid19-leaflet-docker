@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row>
+    <v-row class="row-dashboard">
       <v-col cols="12" xs="12" sm="12" md="12" lg="4">
         <v-card color="secondary" elevation="4">
           <SummaryGlobal class="card-dashboard" />
@@ -12,7 +12,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="row-dashboard">
       <v-col cols="12" xs="12" sm="12" md="12" lg="4">
         <v-card color="secondary" elevation="4">
           <SummaryCountry class="card-dashboard" />
@@ -20,7 +20,7 @@
       </v-col>
       <v-col cols="12" xs="12" sm="12" md="12" lg="8">
         <v-card color="secondary" elevation="4">
-          <LeafletMap id="card-leaflet" class="card-dashboard" />
+          <LeafletMap class="card-leaflet" />
         </v-card>
       </v-col>
     </v-row>
@@ -52,20 +52,32 @@ export default {
 };
 </script>
 <style scoped>
-@media (min-width: 721px) {
+@media (min-width: 1025px) {
   .card-dashboard {
     width: auto !important;
-    height: 42.5vh !important;
+    height: 41vh !important;
+  }
+  .card-leaflet {
+    width: auto !important;
+    height: 41vh !important;
+    margin-bottom: 0px !important;
+  }
+  .row-dashboard {
+    padding: 5px;
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
   .card-dashboard {
     width: auto !important;
     height: auto !important;
   }
-  #card-leaflet {
+  .card-leaflet {
     width: auto !important;
     height: 60vh !important;
+    margin-bottom: 40px !important;
+  }
+  .row-dashboard {
+    padding: 0px;
   }
 }
 </style>

@@ -15,8 +15,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Autocomplete",
   data() {
@@ -25,7 +24,6 @@ export default {
       items: [],
       search: null,
       select: null,
-      countries: [],
     };
   },
   watch: {
@@ -34,9 +32,11 @@ export default {
       this.country(this.select);
     },
   },
+  computed:{
+    ...mapGetters(["getCountries"])
+  },
   async mounted() {
-    const response = await axios.get(process.env.VUE_APP_API_COUNTRIES);
-    this.countries = response.data;
+    await this.$store.dispatch("countries")
   },
   methods: {
     ...mapActions(["country"]),
@@ -44,7 +44,7 @@ export default {
       this.loading = true;
       setTimeout(() => {
         this.items = [];
-        this.countries.filter((e) => {
+        this.getCountries.filter((e) => {
           if (e.Country.toLowerCase().includes(v)) {
             this.items.push(e.Country);
           }
