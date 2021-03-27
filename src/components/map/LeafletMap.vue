@@ -41,7 +41,6 @@ import countries from "../../assets/json/countries.json";
 import Vue2LeafletMarkercluster from "@/components/map/plugins/Vue2LeafletMarkercluster.vue";
 import "./plugins/leaflet-tilelayer-subpixel-fix";
 import { mapGetters, mapActions } from "vuex";
-import axios from "axios";
 // quick fix if marker icons are missing
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -71,45 +70,41 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getCountry"]),
+    ...mapGetters(["getCountry", "getCountryLatLng"]),
   },
   watch: {
     getCountry() {
       if (this.getCountry !== undefined && this.getCountry !== null) {
-        this.countryChosenLongitudeLatitude();
+        this.countryLongitudeLatitude();
+      }
+    },
+    getCountryLatLng() {
+      if (
+        this.getCountryLatLng!==undefined
+      ) {
+        this.initialLocation = latLng(
+          this.getCountryLatLng.Lat,
+          this.getCountryLatLng.Lon
+        );
+        this.zoom = 6;
       }
     },
   },
-  mounted() {
-    this.markersCountries();
-    this.countryChosenLongitudeLatitude();
+  async mounted() {
+    await this.markersCountries();
+    await this.countryLongitudeLatitude();
     setTimeout(() => {
       this.$nextTick(() => {
         this.clusterOptions = { disableClusteringAtZoom: 11 };
       });
-    }, 5000);
+    }, 3000);
   },
   methods: {
-    ...mapActions(["country"]),
+    ...mapActions(["country", "countryLongitudeLatitude"]),
     click: (e) => e,
     ready: (e) => e,
     setCountry(country) {
       this.country(country);
-    },
-    async countryChosenLongitudeLatitude() {
-      this.error = null;
-      const response = await axios.get(
-        `${process.env.VUE_APP_API_DAYONE}${this.getCountry}`
-      );
-      if (response.data[0]) {
-        this.initialLocation = latLng(
-          response.data[0].Lat,
-          response.data[0].Lon
-        );
-        this.zoom = 6;
-      } else {
-        this.error = "an error is occured";
-      }
     },
     markersCountries() {
       for (

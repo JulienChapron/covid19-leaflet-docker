@@ -1,7 +1,7 @@
 <template>
   <v-container fluid color="primary">
     <div id="chart">
-      <h2>{{getCountry}}</h2>
+      <h2>{{ getCountry }}</h2>
       <div class="toolbar">
         <v-btn
           class="ml-2"
@@ -47,7 +47,6 @@
           ALL
         </v-btn>
       </div>
-
       <div style="padding:10px;" id="chart-timeline">
         <apexchart
           type="area"
@@ -62,8 +61,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import VueApexCharts from "vue-apexcharts";
 export default {
   name: "ChartSummaryCountry",
@@ -117,7 +115,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["theme", "getCountry"]),
+    ...mapGetters(["theme", "getCountry", "getDataChart"]),
   },
   watch: {
     theme() {
@@ -128,18 +126,17 @@ export default {
         this.updateOptionsChart();
       }
     },
+    getDataChart() {
+      this.dataChart();
+    },
   },
-  beforeMount() {
+  mounted() {
     this.updateOptionsChart();
   },
   methods: {
-    async updateOptionsChart() {
-      const response = await axios.get(
-        `${process.env.VUE_APP_API_TOTAL_COUNTRY}${
-          this.getCountry
-        }?from=2020-03-01T00:00:00Z&to=${this.currentDate.toJSON()}`
-      );
-      this.dataCovid19 = await response.data;
+    ...mapActions(["updateOptionsChart"]),
+    dataChart() {
+      this.dataCovid19 = this.getDataChart;
       this.confirmed = [];
       this.deaths = [];
       this.recovered = [];

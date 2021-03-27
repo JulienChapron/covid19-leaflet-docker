@@ -17,9 +17,6 @@ export default {
   computed: {
     ...mapGetters(["getSummaryGlobal", "getDateSummaryGlobal"]),
   },
-  async created() {
-    await await this.$store.dispatch("summaryGlobal");
-  },
 };
 </script>
 <style scoped>
