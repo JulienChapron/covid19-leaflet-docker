@@ -22,9 +22,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">8.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/13</span>
+                <span class='fraction'>1/12</span>
             </div>
         
             
@@ -38,14 +38,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">8.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/13</span>
+                <span class='fraction'>1/12</span>
             </div>
         
             
@@ -113,10 +113,7 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,12 +131,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,11 +148,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,8 +187,7 @@
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-import axios from "axios";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Autocomplete",
 <span class="fstat-no" title="function not covered" >  data() {</span>
@@ -203,29 +196,27 @@ export default {
       items: [],
       search: null,
       select: null,
-      countries: [],
     };
   },
   watch: {
 <span class="fstat-no" title="function not covered" >    search(val) {</span>
 <span class="cstat-no" title="statement not covered" >      val &amp;&amp; val !== this.select &amp;&amp; this.querySelections(val);</span>
-<span class="cstat-no" title="statement not covered" >      this.updateCountry(this.select);</span>
-    }
+<span class="cstat-no" title="statement not covered" >      this.country(this.select);</span>
+    },
   },
-<span class="fstat-no" title="function not covered" >  mounted() {</span>
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    axios</span></span>
-      .get("https://api.covid19api.com/countries")
-      .then((response) =&gt; (
-        this.countries = response.data
-      ));
+  computed:{
+    ...mapGetters(["getCountries"])
+  },
+<span class="fstat-no" title="function not covered" >  async mounted() {</span>
+<span class="cstat-no" title="statement not covered" >    await this.$store.dispatch("countries")</span>
   },
   methods: {
-    ...mapActions(["updateCountry"]),
+    ...mapActions(["country"]),
 <span class="fstat-no" title="function not covered" >    querySelections(v) {</span>
 <span class="cstat-no" title="statement not covered" >      this.loading = true;</span>
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      setTimeout(() =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >        this.items = [];</span>
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        this.countries.filter((e) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        this.getCountries.filter((e) =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >          if (e.Country.toLowerCase().includes(v)) {</span>
 <span class="cstat-no" title="statement not covered" >            this.items.push(e.Country);</span>
           }
@@ -243,7 +234,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Mar 23 2021 23:52:47 GMT+0100 (GMT+01:00)
+                at Sat Mar 27 2021 23:02:52 GMT+0100 (GMT+01:00)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

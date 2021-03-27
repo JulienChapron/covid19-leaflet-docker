@@ -4,7 +4,7 @@ import Vuetify from "vuetify";
 import axios from "axios";
 import SummaryCountry from "@/components/dashboard/SummaryCountry.vue";
 import { createLocalVue, shallowMount } from "@vue/test-utils";
-import getters from "../../store/modules/navigation";
+import getters from "../../store/modules/dashboard";
 
 let testGetters = getters.getters;
 const country = "Sweden";
@@ -22,7 +22,7 @@ describe("SummaryCountry.vue", () => {
     vuetify: new Vuetify(vuetifyOptions),
   });
   let getters = testGetters;
-  let store;
+  let store = {};
   beforeEach(() => {
     vuetify = new Vuetify();
     store = new Vuex.Store({

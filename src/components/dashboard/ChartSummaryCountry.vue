@@ -3,40 +3,68 @@
     <div id="chart">
       <h2>{{ getCountry }}</h2>
       <div class="toolbar">
-        <v-btn
-          class="ml-2"
-          id="one_week"
-          @click="updateData('one_week')"
-          :class="{ active: selection === 'one_week' }"
-        >
-          1W
-        </v-btn>
-        <v-btn
-          class="ml-2"
-          id="one_month"
-          @click="updateData('one_month')"
-          :class="{ active: selection === 'one_month' }"
-        >
-          1M
-        </v-btn>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              class="ml-2"
+              v-bind="attrs"
+              id="one_week"
+              v-on="on"
+              @click="updateData('one_week')"
+              :class="{ active: selection === 'one_week' }"
+            >
+              1W
+            </v-btn>
+          </template>
+          <span>1 week</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              class="ml-2"
+              v-bind="attrs"
+              v-on="on"
+              id="one_month"
+              @click="updateData('one_month')"
+              :class="{ active: selection === 'one_month' }"
+            >
+              1M
+            </v-btn>
+          </template>
+          <span>1 month</span>
+        </v-tooltip>
 
-        <v-btn
-          class="ml-2"
-          id="six_months"
-          @click="updateData('six_months')"
-          :class="{ active: selection === 'six_months' }"
-        >
-          6M
-        </v-btn>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              class="ml-2"
+              v-bind="attrs"
+              v-on="on"
+              id="six_months"
+              @click="updateData('six_months')"
+              :class="{ active: selection === 'six_months' }"
+            >
+              6M
+            </v-btn>
+          </template>
+          <span>6 months</span>
+        </v-tooltip>
 
-        <v-btn
-          class="ml-2"
-          id="one_year"
-          @click="updateData('one_year')"
-          :class="{ active: selection === 'one_year' }"
-        >
-          1Y
-        </v-btn>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              class="ml-2"
+              v-bind="attrs"
+              v-on="on"
+              id="one_year"
+              @click="updateData('one_year')"
+              :class="{ active: selection === 'one_year' }"
+            >
+              1Y
+            </v-btn>
+          </template>
+          <span>1 year</span>
+        </v-tooltip>
 
         <v-btn
           class="ml-2"
@@ -101,7 +129,7 @@ export default {
           min: new Date("01 Jan 2020").getTime(),
           tickAmount: 6,
         },
-        colors: ["#9ede73", "#be0000", "#e48900"],
+        colors: ["#e48900", "#be0000", "#9ede73"],
         tooltip: {
           style: {
             fontSize: "12px",
