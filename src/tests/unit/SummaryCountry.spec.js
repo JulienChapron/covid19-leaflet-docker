@@ -3,12 +3,13 @@ import Vuex from "vuex";
 import Vuetify from "vuetify";
 import axios from "axios";
 import SummaryCountry from "@/components/dashboard/SummaryCountry.vue";
-import { createLocalVue, shallowMount } from "@vue/test-utils";
+import { createLocalVue, shallowMount, mount } from "@vue/test-utils";
 import getters from "../../store/modules/dashboard";
 
 let testGetters = getters.getters;
 const country = "Sweden";
-const state = { country };
+const summaryCountry = {date:"12/04/2021"}
+const state = { country,summaryCountry };
 
 let API = "https://api.covid19api.com/summary";
 
@@ -26,12 +27,13 @@ describe("SummaryCountry.vue", () => {
   beforeEach(() => {
     vuetify = new Vuetify();
     store = new Vuex.Store({
-      getters,
+      state,
+      getters
     });
   });
 
   it("balise", () => {
-    const wrapper = shallowMount(SummaryCountry, {
+    const wrapper = mount(SummaryCountry, {
       store,
       localVue,
       vuetify,
@@ -41,7 +43,7 @@ describe("SummaryCountry.vue", () => {
     expect(wrapper.find("p").exists()).toBe(true);
   });
   it("country", () => {
-    const wrapper = shallowMount(SummaryCountry, {
+    const wrapper = mount(SummaryCountry, {
       store,
       localVue,
       vuetify,
@@ -52,7 +54,7 @@ describe("SummaryCountry.vue", () => {
         .find("h2")
         .exists()
     ).toBe(true);
-    const actual = getters.country(state);
+    const actual = getters.getCountry(state);
     expect(actual).toEqual("Sweden");
   });
   it("should return 190 countries", async () => {

@@ -12,7 +12,7 @@ const state = {
   loadingSummary: false,
   loadingMap: true,
   loadingChart: false,
-  loadingSummaryWorld:true
+  loadingSummaryWorld: true,
 };
 const getters = {
   getSummaryGlobal: (state) => {
@@ -65,14 +65,14 @@ const mutations = {
   SET_COUNTRIES(state, countries) {
     state.countries = countries;
   },
-  SET_SUMMARY_GLOBAL(state, summaryGlobal) {
-    state.summaryGlobal = summaryGlobal;
+  SET_SUMMARY_GLOBAL(state, response) {
+    state.summaryGlobal = response.data.Global;
   },
-  SET_DATE_SUMMARY_GLOBAL(state, dateSummaryGlobal) {
-    state.dateSummaryGlobal = dateSummaryGlobal;
+  SET_DATE_SUMMARY_GLOBAL(state, response) {
+    state.dateSummaryGlobal = response.data.Date;
   },
-  SET_DATA_CHART(state, dataChart) {
-    state.dataChart = dataChart;
+  SET_DATA_CHART(state, response) {
+    state.dataChart = response.data;
   },
   SET_ERROR_DATA(state, errorData) {
     state.errorData = errorData;
@@ -89,8 +89,8 @@ const mutations = {
   SET_LOADING_CHART(state, loadingChart) {
     state.loadingChart = loadingChart;
   },
-  SET_SUMMARY_COUNTRY(state, summaryCountries) {
-    summaryCountries.map((country) => {
+  SET_SUMMARY_COUNTRY(state, response) {
+    response.data.Countries.map((country) => {
       if (country.Country === state.country) {
         state.summaryCountry = country;
       }
@@ -112,31 +112,17 @@ const actions = {
   country({ commit }, country) {
     commit("SET_COUNTRY", country);
   },
-  summaryGlobal({ commit }) {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(process.env.VUE_APP_API_SUMMARY)
-        .then(({ data }) => {
-          commit("SET_SUMMARY_GLOBAL", data.Global);
-          commit("SET_DATE_SUMMARY_GLOBAL", data.Date);
-          commit("SET_LOADING_SUMMARY_WORLD", false);
-          resolve(data);
-        })
-        .catch((err) => reject(err));
-    });
+  async summaryGlobal({ commit }) {
+    const response = await axios.get(process.env.VUE_APP_API_SUMMARY);
+    commit("SET_SUMMARY_GLOBAL", response);
+    commit("SET_DATE_SUMMARY_GLOBAL", response);
+    commit("SET_LOADING_SUMMARY_WORLD", false);
   },
-  summaryCountry({ commit }) {
+  async summaryCountry({ commit }) {
     commit("SET_LOADING_SUMMARY", true);
-    return new Promise((resolve, reject) => {
-      axios
-        .get(process.env.VUE_APP_API_SUMMARY)
-        .then(({ data }) => {
-          commit("SET_SUMMARY_COUNTRY", data.Countries);
-          commit("SET_LOADING_SUMMARY", false);
-          resolve(data);
-        })
-        .catch((err) => reject(err));
-    });
+    const response = await axios.get(process.env.VUE_APP_API_SUMMARY);
+    commit("SET_SUMMARY_COUNTRY", response);
+    commit("SET_LOADING_SUMMARY", false);
   },
   countryLongitudeLatitude({ commit }) {
     return new Promise((resolve, reject) => {
@@ -150,27 +136,20 @@ const actions = {
         .catch((err) => reject(err));
     });
   },
-  updateOptionsChart({ commit }) {
+  async updateOptionsChart({ commit }) {
     commit("SET_ERROR_DATA", false);
-    return new Promise((resolve, reject) => {
-      axios
-        .get(
-          process.env.VUE_APP_API_TOTAL_COUNTRY +
-            state.country +
-            "?from=2020-03-01T00:00:00Z&to=" +
-            state.currentDate.toJSON()
-        )
-        .then(({ data }) => {
-          commit("SET_LOADING_MAP", false);
-          if (data.length) {
-            commit("SET_DATA_CHART", data);
-          } else {
-            commit("SET_ERROR_DATA", true);
-          }
-          resolve(data);
-        })
-        .catch((err) => reject(err));
-    });
+    const response = await axios.get(
+      process.env.VUE_APP_API_TOTAL_COUNTRY +
+        state.country +
+        "?from=2020-03-01T00:00:00Z&e=" +
+        state.currentDate.toJSON()
+    );
+    commit("SET_LOADING_MAP", false);
+    if (response) {
+      commit("SET_DATA_CHART", response);
+    } else {
+      commit("SET_ERROR_DATA", true);
+    }
   },
 };
 
