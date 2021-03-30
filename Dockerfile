@@ -1,7 +1,7 @@
-FROM node:14
+FROM node:15.11.0-slim
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install --silent
+RUN npm install -g npm@7.7.6 --silent
 COPY . .
-EXPOSE 3000
-CMD ["yarn","serve"]
+EXPOSE 8080
+CMD ["yarn", "serve"]

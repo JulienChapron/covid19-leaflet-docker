@@ -24,8 +24,8 @@
 
 ## Tech Stack
 
-Vuejs <https://vuejs.org>
-Vuetify <https://vuetifyjs.com/en/>
+* ![Vue Logo](https://www.toutjavascript.com/demo/vue/img/logo-vue.82b9c7a5.png "Vue logo") Vuejs <https://vuejs.org>
+* Vuetify <https://vuetifyjs.com/en/>
 
 ## Project Description
 
@@ -51,7 +51,7 @@ https://github.com/JulienChapron/covid19-leaflet-docker.git
 Go to folder `covid19-leaflet-docker`
 
 ```bash
-yarn serve
+yarn install && yarn serve
 ```
 
 ## Installation and run the app with docker 🚀🚀
@@ -65,9 +65,14 @@ https://github.com/JulienChapron/covid19-leaflet-docker.git
 Go to folder `covid19-leaflet-docker`
 
 ```bash
-docker build -t covid19-leaflet-docker .
+yarn install && docker build -t covid19-leaflet-docker .
 ```
 
 ## Version 0.1
 
-Initial
+***Initial
+
+## Version 0.2
+
+***Jest and unit testing
+***
