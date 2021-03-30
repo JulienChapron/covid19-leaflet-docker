@@ -24,7 +24,7 @@
 
 ## Tech Stack
 
-* ![Vue Logo](https://www.toutjavascript.com/demo/vue/img/logo-vue.82b9c7a5.png "Vue logo") Vuejs <https://vuejs.org>
+* <img src="https://www.toutjavascript.com/demo/vue/img/logo-vue.82b9c7a5.png" alt="drawing" width="50"/> Vuejs <https://vuejs.org>
 * Vuetify <https://vuetifyjs.com/en/>
 
 ## Project Description
