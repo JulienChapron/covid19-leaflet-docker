@@ -59,7 +59,7 @@ describe("SummaryCountry.vue", () => {
   });
   it("should return 190 countries", async () => {
     const response = await axios.get(API);
-    const { Countries } = await response.data;
+    const { Countries } = response.data;
     expect(Countries.length).toBe(190);
   });
   it("should return success response", async () => {

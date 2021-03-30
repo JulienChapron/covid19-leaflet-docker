@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1617051296909" clover="3.2.0">
-  <project timestamp="1617051296909" name="All files">
-    <metrics statements="195" coveredstatements="67" conditionals="42" coveredconditionals="8" methods="84" coveredmethods="17" elements="321" coveredelements="92" complexity="0" loc="195" ncloc="195" packages="10" files="16" classes="16"/>
+<coverage generated="1617138853401" clover="3.2.0">
+  <project timestamp="1617138853401" name="All files">
+    <metrics statements="195" coveredstatements="68" conditionals="42" coveredconditionals="8" methods="84" coveredmethods="18" elements="321" coveredelements="94" complexity="0" loc="195" ncloc="195" packages="10" files="16" classes="16"/>
     <package name="src">
       <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="App.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/App.vue">
@@ -154,10 +154,10 @@
       </file>
     </package>
     <package name="src.layouts">
-      <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
       <file name="Footer.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/layouts/Footer.vue">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="13" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="13" count="2" type="stmt"/>
       </file>
       <file name="Navigation.vue" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/layouts/Navigation.vue">
         <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -206,8 +206,8 @@
       <metrics statements="64" coveredstatements="28" conditionals="4" coveredconditionals="3" methods="42" coveredmethods="13"/>
       <file name="dashboard.js" path="/home/alpha/Documents/DOCKER/covid19-leaflet-docker/src/store/modules/dashboard.js">
         <metrics statements="57" coveredstatements="28" conditionals="4" coveredconditionals="3" methods="38" coveredmethods="13"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="25" count="2" type="stmt"/>
@@ -221,7 +221,7 @@
         <line num="49" count="1" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
-        <line num="58" count="2" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
         <line num="60" count="0" type="stmt"/>
         <line num="63" count="0" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
@@ -233,10 +233,10 @@
         <line num="84" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
         <line num="90" count="0" type="stmt"/>
-        <line num="93" count="2" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
         <line num="94" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="95" count="1" type="stmt"/>
-        <line num="100" count="2" type="stmt"/>
+        <line num="100" count="3" type="stmt"/>
         <line num="102" count="0" type="stmt"/>
         <line num="103" count="0" type="stmt"/>
         <line num="106" count="0" type="stmt"/>
@@ -249,7 +249,7 @@
         <line num="119" count="1" type="stmt"/>
         <line num="122" count="2" type="stmt"/>
         <line num="123" count="2" type="stmt"/>
-        <line num="124" count="2" type="stmt"/>
+        <line num="124" count="1" type="stmt"/>
         <line num="125" count="1" type="stmt"/>
         <line num="128" count="0" type="stmt"/>
         <line num="129" count="0" type="stmt"/>
