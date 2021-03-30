@@ -7,7 +7,7 @@
 
 
 ### Theme
-![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/covid19-leaflet-docker-theme.gif)
+![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/theme.gif)
 
 ### Autocomplete
 ![alt text](https://raw.githubusercontent.com/JulienChapron/covid19-leaflet-docker/main/readme/covid19-leaflet-docker-autocomplete.gif)
@@ -24,8 +24,9 @@
 
 ## Tech Stack
 
-* <img src="https://www.toutjavascript.com/demo/vue/img/logo-vue.82b9c7a5.png" alt="drawing" width="50"/> Vuejs <https://vuejs.org>
-* Vuetify <https://vuetifyjs.com/en/>
+* <img src="https://www.toutjavascript.com/demo/vue/img/logo-vue.82b9c7a5.png" alt="logo-vue" height="50"/> Vuejs <https://vuejs.org>
+* <img src="https://seeklogo.com/images/V/vuetify-logo-3BCF73C928-seeklogo.com.png" alt="logo-vuetify" height="50"/> Vuetify <https://vuetifyjs.com/en/>
+* <img src="https://user-images.githubusercontent.com/7110136/29002857-9e802f08-7ab4-11e7-9c31-604b5d0d0c19.png" alt="logo-vuex" height="50"/> Vuex <https://vuex.vuejs.org//>
 
 ## Project Description
 
