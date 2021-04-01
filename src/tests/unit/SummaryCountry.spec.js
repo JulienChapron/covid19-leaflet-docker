@@ -1,17 +1,28 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Vuetify from "vuetify";
-import axios from "axios";
 import SummaryCountry from "@/components/dashboard/SummaryCountry.vue";
-import { createLocalVue, shallowMount, mount } from "@vue/test-utils";
+import { createLocalVue, mount } from "@vue/test-utils";
 import getters from "../../store/modules/dashboard";
+import actions from "../../store/modules/dashboard";
 
 let testGetters = getters.getters;
+let testActions = actions.actions;
 const country = "Sweden";
-const summaryCountry = {date:"12/04/2021"}
-const state = { country,summaryCountry };
+const summaryCountry = { test: "test" };
+const state = { country, summaryCountry };
 
 let API = "https://api.covid19api.com/summary";
+let url = "";
+
+jest.mock("axios", () => ({
+  get: (_url) => {
+    return new Promise((resolve) => {
+      url = _url;
+      resolve(true);
+    });
+  },
+}));
 
 describe("SummaryCountry.vue", () => {
   const localVue = createLocalVue();
@@ -23,12 +34,14 @@ describe("SummaryCountry.vue", () => {
     vuetify: new Vuetify(vuetifyOptions),
   });
   let getters = testGetters;
+  let actions = testActions;
   let store = {};
   beforeEach(() => {
     vuetify = new Vuetify();
     store = new Vuex.Store({
       state,
-      getters
+      getters,
+      actions,
     });
   });
 
@@ -41,8 +54,8 @@ describe("SummaryCountry.vue", () => {
     expect(wrapper.find("h2").exists()).toBe(true);
     expect(wrapper.find("h3").exists()).toBe(true);
     expect(wrapper.find("p").exists()).toBe(true);
-  });
-  it("country", () => {
+  })
+  it("getters: getCountry", () => {
     const wrapper = mount(SummaryCountry, {
       store,
       localVue,
@@ -57,17 +70,28 @@ describe("SummaryCountry.vue", () => {
     const actual = getters.getCountry(state);
     expect(actual).toEqual("Sweden");
   });
-  it("should return 190 countries", async () => {
-    const response = await axios.get(API);
-    const { Countries } = response.data;
-    expect(Countries.length).toBe(190);
+  
+  it("getters: getSummaryCountry", () => {
+    const wrapper = mount(SummaryCountry, {
+      store,
+      localVue,
+      vuetify,
+    });
+    expect(
+      wrapper
+        .find(".country")
+        .find("h2")
+        .exists()
+    ).toBe(true);
+    const actual = getters.getSummaryCountry(state);
+    expect(actual).toEqual({ test: "test" });
   });
-  it("should return success response", async () => {
-    jest.mock("axios");
-    const axios = require("axios");
-    const mockResponse = { data: { msg: "Hello World" } };
-    axios.get.mockImplementation(() => Promise.resolve(mockResponse));
-    const res = await axios.get(API);
-    expect(res.data).toMatchObject({ msg: "Hello World" });
+  it("actions: summaryCountry", async () => {
+    const commit = jest.fn();
+    await actions.summaryCountry({ commit });
+    expect(url).toBe(process.env.VUE_APP_API_SUMMARY);
+    expect(commit).toHaveBeenCalledTimes(3);
+    expect(commit).toHaveBeenNthCalledWith(1, "SET_LOADING_SUMMARY", true);
+    expect(commit).toHaveBeenNthCalledWith(2, "SET_SUMMARY_COUNTRY", true);
   });
 });

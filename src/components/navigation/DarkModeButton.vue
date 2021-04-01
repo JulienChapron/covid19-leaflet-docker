@@ -11,7 +11,7 @@
 
     <v-tooltip v-else bottom>
       <template v-slot:activator="{ on }">
-        <v-btn elevation=2 small fab rounded v-on="on" color="secondary" @click="darkMode">
+        <v-btn elevation=2 small fab rounded v-on="on" color="secondary" class="darkmode-button" @click="darkMode">
           <v-icon color="yellow">mdi-white-balance-sunny</v-icon>
         </v-btn>
       </template>

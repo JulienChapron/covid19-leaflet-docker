@@ -28,7 +28,7 @@ export default {
   name: "SummaryCountry",
   watch: {
     getCountry() {
-      this.$store.dispatch("summaryCountry");
+      this.$store.dispatch("summaryCountry")
     },
   },
   computed: {
