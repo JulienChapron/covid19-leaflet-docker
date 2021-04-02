@@ -3,7 +3,6 @@ node_modules
 /dist
 
 # env files
-.env
 .env.staging
 .env.production
 .env.local
