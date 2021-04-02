@@ -1,5 +1,5 @@
 # Simple COVID-19 outbreak evolution dashboard
-![Build Status](https://travis-ci.com/JulienChapron/covid19-leaflet-docker.svg?branch=main)
+[![Build Status](https://travis-ci.org/JulienChapron/covid19-leaflet-docker.svg?branch=main)](https://travis-ci.org/JulienChapron/covid19-leaflet-docker)
 <a href="https://github.com/JulienChapron/covid19-leaflet-docker/main/LICENSE">
  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="covid19-leaflet-docker is released under the MIT license." />
 </a>
