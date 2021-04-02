@@ -1,10 +1,10 @@
 language: node_js
 node_js:
-  - 15
+  - 15.11.0-slim
 cache:
   directories:
     - node_modules
   install:
     - yarn install
   script:
-    - yarn run test a -u
+    - yarn test a -u
