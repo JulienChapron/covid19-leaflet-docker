@@ -1,4 +1,10 @@
 language: node_js
+env:
+  - VUE_APP_API_SUMMARY=https://api.covid19api.com/summary
+  - VUE_APP_API_TOTAL_COUNTRY=https://api.covid19api.com/total/country/
+  - VUE_APP_API_DAYONE = https://api.covid19api.com/dayone/country/
+  - VUE_APP_API_COUNTRIES = https://api.covid19api.com/countries
+  - VUE_APP_VERSION = 'covid19-leaflet-docker v0.2'
 node_js:
   - 14
 cache:
