@@ -22,9 +22,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30% </span>
+                <span class="strong">32% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/30</span>
+                <span class='fraction'>8/25</span>
             </div>
         
             
@@ -38,14 +38,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.03% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/29</span>
+                <span class='fraction'>8/24</span>
             </div>
         
             
@@ -197,14 +197,7 @@
 <a name='L139'></a><a href='#L139'>139</a>
 <a name='L140'></a><a href='#L140'>140</a>
 <a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a>
-<a name='L144'></a><a href='#L144'>144</a>
-<a name='L145'></a><a href='#L145'>145</a>
-<a name='L146'></a><a href='#L146'>146</a>
-<a name='L147'></a><a href='#L147'>147</a>
-<a name='L148'></a><a href='#L148'>148</a>
-<a name='L149'></a><a href='#L149'>149</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -241,7 +234,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -286,6 +278,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -301,23 +304,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -395,7 +381,6 @@ import countries from "../../assets/json/countries.json";
 import Vue2LeafletMarkercluster from "@/components/map/plugins/Vue2LeafletMarkercluster.vue";
 import "./plugins/leaflet-tilelayer-subpixel-fix";
 import { mapGetters, mapActions } from "vuex";
-import axios from "axios";
 // quick fix if marker icons are missing
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -421,51 +406,45 @@ export default {
       initialLocation: latLng(46.7, 1.7),
       zoom: 6,
       countriesJsonPosition: countries,
-      error: null
+      error: null,
     };
   },
   computed: {
-    ...mapGetters(["country"]),
+    ...mapGetters(["getCountry", "getCountryLatLng"]),
   },
   watch: {
-<span class="fstat-no" title="function not covered" >    country() {</span>
-<span class="cstat-no" title="statement not covered" >      if (this.country !== undefined &amp;&amp; this.country !== null) {</span>
-<span class="cstat-no" title="statement not covered" >        this.countryChosenLongitudeLatitude();</span>
+<span class="fstat-no" title="function not covered" >    getCountry() {</span>
+<span class="cstat-no" title="statement not covered" >      if (this.getCountry !== undefined &amp;&amp; this.getCountry !== null) {</span>
+<span class="cstat-no" title="statement not covered" >        this.countryLongitudeLatitude();</span>
+      }
+    },
+<span class="fstat-no" title="function not covered" >    getCountryLatLng() {</span>
+<span class="cstat-no" title="statement not covered" >      if (</span>
+        this.getCountryLatLng!==undefined
+      ) {
+<span class="cstat-no" title="statement not covered" >        this.initialLocation = latLng(</span>
+          this.getCountryLatLng.Lat,
+          this.getCountryLatLng.Lon
+        );
+<span class="cstat-no" title="statement not covered" >        this.zoom = 6;</span>
       }
     },
   },
-<span class="fstat-no" title="function not covered" >  mounted() {</span>
-<span class="cstat-no" title="statement not covered" >    this.markersCountries();</span>
-<span class="cstat-no" title="statement not covered" >    this.countryChosenLongitudeLatitude();</span>
+<span class="fstat-no" title="function not covered" >  async mounted() {</span>
+<span class="cstat-no" title="statement not covered" >    await this.markersCountries();</span>
+<span class="cstat-no" title="statement not covered" >    await this.countryLongitudeLatitude();</span>
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    setTimeout(() =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      this.$nextTick(() =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >        this.clusterOptions = { disableClusteringAtZoom: 11 };</span>
       });
-    }, 5000);
+    }, 3000);
   },
   methods: {
-    ...mapActions(["updateCountry"]),
+    ...mapActions(["country", "countryLongitudeLatitude"]),
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    click: (e) =&gt; e,</span></span>
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    ready: (e) =&gt; e,</span></span>
 <span class="fstat-no" title="function not covered" >    setCountry(country) {</span>
-<span class="cstat-no" title="statement not covered" >      this.updateCountry(country);</span>
-    },
-<span class="fstat-no" title="function not covered" >    countryChosenLongitudeLatitude() {</span>
-<span class="cstat-no" title="statement not covered" >      this.error = null</span>
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      axios</span></span>
-        .get(`https://api.covid19api.com/dayone/country/` + this.country)
-        .then((response) =&gt; {
-<span class="cstat-no" title="statement not covered" >          console.log(response.data[0])</span>
-<span class="cstat-no" title="statement not covered" >          if (response.data[0]) {</span>
-<span class="cstat-no" title="statement not covered" >            this.initialLocation = latLng(</span>
-              response.data[0].Lat,
-              response.data[0].Lon
-            );
-<span class="cstat-no" title="statement not covered" >            this.zoom = 6;</span>
-          } else {
-<span class="cstat-no" title="statement not covered" >            this.error = 'an error is occured'</span>
-          }
-        });
+<span class="cstat-no" title="statement not covered" >      this.country(country);</span>
     },
 <span class="fstat-no" title="function not covered" >    markersCountries() {</span>
 <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >      for (</span></span>
@@ -507,7 +486,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Mar 22 2021 14:25:29 GMT+0100 (GMT+01:00)
+                at Fri Apr 02 2021 19:14:36 GMT+0200 (GMT+02:00)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

@@ -41,7 +41,6 @@ import countries from "../../assets/json/countries.json";
 import Vue2LeafletMarkercluster from "@/components/map/plugins/Vue2LeafletMarkercluster.vue";
 import "./plugins/leaflet-tilelayer-subpixel-fix";
 import { mapGetters, mapActions } from "vuex";
-import axios from "axios";
 // quick fix if marker icons are missing
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -67,51 +66,45 @@ export default {
       initialLocation: latLng(46.7, 1.7),
       zoom: 6,
       countriesJsonPosition: countries,
-      error: null
+      error: null,
     };
   },
   computed: {
-    ...mapGetters(["country"]),
+    ...mapGetters(["getCountry", "getCountryLatLng"]),
   },
   watch: {
-    country() {
-      if (this.country !== undefined && this.country !== null) {
-        this.countryChosenLongitudeLatitude();
+    getCountry() {
+      if (this.getCountry !== undefined && this.getCountry !== null) {
+        this.countryLongitudeLatitude();
+      }
+    },
+    getCountryLatLng() {
+      if (
+        this.getCountryLatLng!==undefined
+      ) {
+        this.initialLocation = latLng(
+          this.getCountryLatLng.Lat,
+          this.getCountryLatLng.Lon
+        );
+        this.zoom = 6;
       }
     },
   },
-  mounted() {
-    this.markersCountries();
-    this.countryChosenLongitudeLatitude();
+  async mounted() {
+    await this.markersCountries();
+    await this.countryLongitudeLatitude();
     setTimeout(() => {
       this.$nextTick(() => {
         this.clusterOptions = { disableClusteringAtZoom: 11 };
       });
-    }, 5000);
+    }, 3000);
   },
   methods: {
-    ...mapActions(["updateCountry"]),
+    ...mapActions(["country", "countryLongitudeLatitude"]),
     click: (e) => e,
     ready: (e) => e,
     setCountry(country) {
-      this.updateCountry(country);
-    },
-    countryChosenLongitudeLatitude() {
-      this.error = null
-      axios
-        .get(`https://api.covid19api.com/dayone/country/` + this.country)
-        .then((response) => {
-          console.log(response.data[0])
-          if (response.data[0]) {
-            this.initialLocation = latLng(
-              response.data[0].Lat,
-              response.data[0].Lon
-            );
-            this.zoom = 6;
-          } else {
-            this.error = 'an error is occured'
-          }
-        });
+      this.country(country);
     },
     markersCountries() {
       for (
