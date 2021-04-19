@@ -1,8 +1,7 @@
 import Vue from "vue";
 import Vuetify from "vuetify";
 import Vuex from "vuex";
-import Dashboard from "../../pages/Dashboard.vue";
-import { createLocalVue, shallowMount } from "@vue/test-utils";
+import { createLocalVue } from "@vue/test-utils";
 import getters from "../../store/modules/dashboard";
 import actions from "../../store/modules/dashboard";
 import mutations from "../../store/modules/dashboard";
@@ -49,28 +48,6 @@ describe("Dashboard.vue", () => {
       mutations,
     });
   });
-
-  it("Find components", () => {
-    const wrapper = shallowMount(Dashboard, {
-      store,
-      localVue,
-      vuetify,
-    });
-    //summaryCountry
-    const summaryCountry = wrapper.findComponent({ name: "SummaryCountry" });
-    expect(summaryCountry.exists()).toBe(true);
-    //chartSummaryCountry
-    const chartSummaryCountry = wrapper.findComponent({
-      name: "ChartSummaryCountry",
-    });
-    expect(chartSummaryCountry.exists()).toBe(true);
-    //summaryGlobal
-    const summaryGlobal = wrapper.findComponent({ name: "SummaryGlobal" });
-    expect(summaryGlobal.exists()).toBe(true);
-    //leafletMap
-    const leafletMap = wrapper.findComponent({ name: "LeafletMap" });
-    expect(leafletMap.exists()).toBe(true);
-  });
   it("mutations = SET_LOADING_SUMMARY", () => {
     const loadingSummary = true;
     const state = {
@@ -87,7 +64,7 @@ describe("Dashboard.vue", () => {
     };
     const state = {
       country: "Sweden",
-      summaryCountry: []
+      summaryCountry: [],
     };
     mutations.SET_SUMMARY_COUNTRY(state, response);
     expect(state).toEqual({
