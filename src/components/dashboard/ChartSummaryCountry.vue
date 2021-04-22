@@ -78,7 +78,7 @@
       <div style="padding:10px;" id="chart-timeline">
         <apexchart
           type="area"
-          height="280"
+          height="230"
           ref="chart"
           :options="chartOptions"
           :series="series"

@@ -97,11 +97,12 @@ export default {
 @media (min-width: 1025px) {
   .card-dashboard {
     width: auto !important;
-    height: 41vh !important;
+    height: 40vh !important;
   }
   .card-leaflet {
+    border-radius: 5px !important;
     width: auto !important;
-    height: 41vh !important;
+    height: 40vh !important;
     margin-bottom: 0px !important;
   }
   .row-dashboard {
@@ -114,6 +115,7 @@ export default {
     height: auto !important;
   }
   .card-leaflet {
+    border-radius: 5px !important;
     width: auto !important;
     height: 60vh !important;
     margin-bottom: 40px !important;
