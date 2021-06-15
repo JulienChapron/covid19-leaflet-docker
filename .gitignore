@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 /dist
+coverages
 
 # env files
 .env.staging
