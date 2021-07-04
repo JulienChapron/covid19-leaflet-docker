@@ -8,7 +8,6 @@
       </template>
       <span>Dark Mode On</span>
     </v-tooltip>
-
     <v-tooltip v-else bottom>
       <template v-slot:activator="{ on }">
         <v-btn elevation=2 small fab rounded v-on="on" color="secondary" class="darkmode-button" @click="darkMode">
@@ -33,5 +32,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
