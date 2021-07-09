@@ -59,11 +59,6 @@ import SkeletonsMap from "@/components/dashboard/SkeletonsMap";
 import NotificationNoData from "@/components/dashboard/NotificationNoData";
 export default {
   name: "Dashboard",
-  data() {
-    return {
-      drawer: true,
-    };
-  },
   components: {
     LeafletMap,
     SummaryGlobal,
@@ -81,15 +76,12 @@ export default {
       "getLoadingMap",
       "getDataChart",
       "getLoadingSummaryWorld",
-    ]),
-    theme() {
-      return this.$vuetify.theme.dark ? "dark" : "light";
-    },
+    ])
   },
-  async mounted() {
-    await this.$store.dispatch("summaryCountry");
-    await this.$store.dispatch("summaryGlobal");
-    await this.$store.dispatch("updateOptionsChart");
+  mounted() {
+    this.$store.dispatch("summaryCountry");
+    this.$store.dispatch("summaryGlobal");
+    this.$store.dispatch("updateOptionsChart");
   },
 };
 </script>

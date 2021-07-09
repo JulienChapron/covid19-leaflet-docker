@@ -5,6 +5,7 @@ import { createLocalVue } from "@vue/test-utils";
 import getters from "../../store/modules/dashboard";
 import actions from "../../store/modules/dashboard";
 import mutations from "../../store/modules/dashboard";
+import { Theme } from '../../plugins/vuetify'
 
 let testGetters = getters.getters;
 let testActions = actions.actions;
@@ -93,7 +94,7 @@ describe("Dashboard.vue", () => {
   it("actions: updateOptionsChart", async () => {
     const commit = jest.fn();
     await actions.updateOptionsChart({ commit });
-    expect(url).toBe(process.env.VUE_APP_API_TOTAL_COUNTRY+state.country+'?from=2020-03-01T00:00:00Z&e='+state.currentDate.toJSON());
+    expect(url.slice(0, -3)).toBe(process.env.VUE_APP_API_TOTAL_COUNTRY+state.country+'?from=2020-03-01T00:00:00Z&e='+state.currentDate.toJSON().slice(0, -3));
     expect(commit).toHaveBeenCalledTimes(3);
     expect(commit).toHaveBeenNthCalledWith(1, 'SET_ERROR_DATA', false);
     expect(commit).toHaveBeenNthCalledWith(2, 'SET_LOADING_MAP', false);

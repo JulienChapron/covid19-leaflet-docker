@@ -1,12 +1,12 @@
 <template>
   <div class="ml-4">
     <v-tooltip v-if="!$vuetify.theme.dark" bottom>
-      <template v-slot:activator="{ on }">
+      <template v-slot:activator="{ on }" class="activator">
         <v-btn elevation=2 small fab rounded v-on="on" color="primary" @click="darkMode">
           <v-icon color="primary">mdi-moon-waxing-crescent</v-icon>
         </v-btn>
       </template>
-      <span>Dark Mode On</span>
+      <span id="tooltip-text">Dark Mode On</span>
     </v-tooltip>
     <v-tooltip v-else bottom>
       <template v-slot:activator="{ on }">
