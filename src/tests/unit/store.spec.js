@@ -46,10 +46,6 @@ const debug = process.env.NODE_ENV !== "production";
 
 describe("index.js", () => {
   let store = storeConfig;
-  beforeEach(() => {
-    const localVue = createLocalVue();
-    localVue.use(Vuex);
-  });
   it("1. mount modules Dashboard and Navigation with actions", () => {
     let testActions = Object.keys(store._actions);
     expect(testActions).toStrictEqual(actions);

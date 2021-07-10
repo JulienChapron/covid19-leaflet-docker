@@ -10,6 +10,9 @@ import Vuex from "vuex";
 
 let testGetters = getters.getters;
 let testActions = actions.actions;
+let testState = {
+  theme: "light"
+}
 
 describe("Dashboard.vue", () => {
   const localVue = createLocalVue();
@@ -23,12 +26,15 @@ describe("Dashboard.vue", () => {
   });
   let getters = testGetters;
   let actions = testActions;
+  let state = testState;
+
   let store = {};
   beforeEach(() => {
     vuetify = new Vuetify();
     store = new Vuex.Store({
       getters,
       actions,
+      state
     });
   });
   it("1.Find component", () => {
