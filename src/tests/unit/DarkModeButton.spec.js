@@ -1,8 +1,9 @@
 import Vue from "vue";
 import Vuetify from "vuetify";
-import Vuex from "vuex";
 import DarkModeButton from "../../components/navigation/DarkModeButton.vue";
 import { createLocalVue, mount } from "@vue/test-utils";
+import navigation from "@/store/modules/navigation.js"
+import store from '../../store/index'
 
 describe("DarkModeButton.vue", () => {
   const localVue = createLocalVue()
@@ -29,16 +30,19 @@ describe("DarkModeButton.vue", () => {
     });
     expect(wrapper.find('.mdi-moon-waxing-crescent').exists()).toBe(true)
   });
-  it("3.Tootlip Dark Mode On", async () => {
+  it("3.function", async () => {
     wrapper = mount(DarkModeButton, {
       localVue,
-      vuetify
+      vuetify,
+      store
     }); 
-    /* const activator = wrapper.find('.activator')
-    const cb = jest.fn()
-    wrapper.vm.$on('input', cb)
-    activator.trigger('mouseenter')
+    const commit = jest.fn()
+    const button = wrapper.find('.v-btn')
+    expect(button.exists()).toBe(true)
+    button.vm.$emit('click')
     await wrapper.vm.$nextTick()
-    expect(cb).toHaveBeenCalledWith(true) */
-  });
+    await navigation.actions.updateTheme({ commit }, 'dark')
+    expect(commit).toHaveBeenCalledWith(
+      "theme", 'dark')
+  })
 });

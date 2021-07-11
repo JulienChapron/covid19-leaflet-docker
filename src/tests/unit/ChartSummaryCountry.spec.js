@@ -6,6 +6,7 @@ import { createLocalVue, shallowMount, mount } from "@vue/test-utils";
 import getters from "../../store/modules/dashboard";
 import actions from "../../store/modules/dashboard";
 import mutations from "../../store/modules/dashboard";
+
 let testGetters = getters.getters;
 let testActions = actions.actions;
 let testMutations = mutations.mutations;
