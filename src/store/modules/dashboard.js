@@ -33,9 +33,6 @@ const getters = {
   getCountryLatLng: (state) => {
     return state.countryLatLng;
   },
-  getCurrentData: (state) => {
-    return state.currentData;
-  },
   getDataChart: (state) => {
     return state.dataChart;
   },
@@ -72,7 +69,7 @@ const mutations = {
     state.dateSummaryGlobal = response.data.Date;
   },
   SET_DATA_CHART(state, response) {
-    state.dataChart = response.data;
+    state.dataChart = response;
   },
   SET_ERROR_DATA(state, errorData) {
     state.errorData = errorData;
@@ -98,16 +95,9 @@ const mutations = {
   },
 };
 const actions = {
-  countries({ commit }) {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(process.env.VUE_APP_API_COUNTRIES)
-        .then(({ data }) => {
-          commit("SET_COUNTRIES", data);
-          resolve(data);
-        })
-        .catch((err) => reject(err));
-    });
+  async countries({ commit }) {
+    const response = await axios.get(process.env.VUE_APP_API_COUNTRIES);
+    commit("SET_COUNTRIES", response.data);
   },
   country({ commit }, country) {
     commit("SET_COUNTRY", country);
@@ -124,17 +114,12 @@ const actions = {
     commit("SET_SUMMARY_COUNTRY", response);
     commit("SET_LOADING_SUMMARY", false);
   },
-  countryLongitudeLatitude({ commit }) {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(process.env.VUE_APP_API_DAYONE + state.country)
-        .then(({ data }) => {
-          commit("SET_COUNTRY_LAT_LNG", data[0]);
-          commit("SET_ERROR_DATA", false);
-          resolve(data);
-        })
-        .catch((err) => reject(err));
-    });
+  async countryLongitudeLatitude({ commit }) {
+    const response = await axios.get(
+      process.env.VUE_APP_API_DAYONE + state.country
+    );
+    commit("SET_COUNTRY_LAT_LNG", response.data[0]);
+    commit("SET_ERROR_DATA", false);
   },
   async updateOptionsChart({ commit }) {
     commit("SET_ERROR_DATA", false);
@@ -146,7 +131,7 @@ const actions = {
     );
     commit("SET_LOADING_MAP", false);
     if (response) {
-      commit("SET_DATA_CHART", response);
+      commit("SET_DATA_CHART", response.data);
     } else {
       commit("SET_ERROR_DATA", true);
     }

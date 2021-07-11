@@ -5,6 +5,7 @@ import { createLocalVue } from "@vue/test-utils";
 import getters from "../../store/modules/dashboard";
 import actions from "../../store/modules/dashboard";
 import mutations from "../../store/modules/dashboard";
+import setDataChart from '../unit/data/setDataChart.json'
 
 let testGetters = getters.getters;
 let testActions = actions.actions;
@@ -97,6 +98,6 @@ describe("Dashboard.vue", () => {
     expect(commit).toHaveBeenCalledTimes(3);
     expect(commit).toHaveBeenNthCalledWith(1, 'SET_ERROR_DATA', false);
     expect(commit).toHaveBeenNthCalledWith(2, 'SET_LOADING_MAP', false);
-    expect(commit).toHaveBeenNthCalledWith(3, 'SET_DATA_CHART', true);
+    expect(commit).toHaveBeenNthCalledWith(3, 'SET_DATA_CHART', undefined);
   });
 });

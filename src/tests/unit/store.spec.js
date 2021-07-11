@@ -18,7 +18,6 @@ const getters = [
   "getCountry",
   "getCountries",
   "getCountryLatLng",
-  "getCurrentData",
   "getDataChart",
   "getErrorData",
   "getLoadingSummary",
