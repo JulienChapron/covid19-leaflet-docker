@@ -5,7 +5,6 @@ import { createLocalVue } from "@vue/test-utils";
 import getters from "../../store/modules/dashboard";
 import actions from "../../store/modules/dashboard";
 import mutations from "../../store/modules/dashboard";
-import setDataChart from '../unit/data/setDataChart.json'
 
 let testGetters = getters.getters;
 let testActions = actions.actions;

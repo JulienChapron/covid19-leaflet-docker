@@ -1,5 +1,5 @@
 import dashboard from "@/store/modules/dashboard.js";
-import setDataChart from "../unit/data/setDataChart.json";
+import axios from "axios";
 describe("store/modules/dashboard.js", () => {
   const state = {
     summaryGlobal: {},
@@ -101,46 +101,43 @@ describe("store/modules/dashboard.js", () => {
     expect(commit).toHaveBeenCalledWith("SET_COUNTRY", "France");
     // countryLongitudeLatitude
     commit = jest.fn();
-    const testCountryLongitudeLatitude = {
-      Active: 2,
-      City: "",
-      CityCode: "",
-      Confirmed: 2,
-      Country: "France",
-      CountryCode: "FR",
-      Date: "2020-01-24T00:00:00Z",
-      Deaths: 0,
-      ID: "9211d9fc-ca34-4163-8be1-72a8a5c760e3",
-      Lat: "46.23",
-      Lon: "2.21",
-      Province: "",
-      Recovered: 0,
-    };
+    const response = await axios.get(
+      process.env.VUE_APP_API_DAYONE + state.country
+    );
     await dashboard.actions.countryLongitudeLatitude(
       { commit },
-      testCountryLongitudeLatitude
+      response.data[0]
     );
     expect(commit).toHaveBeenCalledTimes(2);
     expect(commit).toHaveBeenNthCalledWith(
       1,
       "SET_COUNTRY_LAT_LNG",
-      testCountryLongitudeLatitude
+      response.data[0]
     );
-    expect(commit).toHaveBeenNthCalledWith(
-      2,
-      "SET_ERROR_DATA",
-      false
+    expect(commit).toHaveBeenNthCalledWith(2, "SET_ERROR_DATA", false);
+  });
+
+ /*  it("4. actions updateOptionChart", async () => {
+    let commit = jest.fn();
+    const response = await axios.get(
+      process.env.VUE_APP_API_TOTAL_COUNTRY +
+        "France" +
+        "?from=2020-03-01T00:00:00Z&e=" +
+        new Date().toJSON()
     );
-    // updateOptionChart
-    commit = jest.fn();
-    const testUpdateOptionsChart = "updateOptionsChart";
     await dashboard.actions.updateOptionsChart(
       { commit },
-      testUpdateOptionsChart
+      response.data
     );
     expect(commit).toHaveBeenCalledTimes(3);
     expect(commit).toHaveBeenNthCalledWith(1, "SET_ERROR_DATA", false);
     expect(commit).toHaveBeenNthCalledWith(2, "SET_LOADING_MAP", false);
-    expect(commit).toHaveBeenNthCalledWith(3, "SET_DATA_CHART", setDataChart);
-  });
+    if (response)
+      expect(commit).toHaveBeenNthCalledWith(
+        3,
+        "SET_DATA_CHART",
+        response.data
+      );
+    else expect(commit).toHaveBeenNthCalledWith(1, "SET_ERROR_DATA", false);
+  }); */
 });

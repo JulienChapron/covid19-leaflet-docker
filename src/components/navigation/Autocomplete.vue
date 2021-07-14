@@ -35,8 +35,8 @@ export default {
   computed:{
     ...mapGetters(["getCountries"])
   },
-  async mounted() {
-    await this.$store.dispatch("countries")
+  mounted() {
+    this.$store.dispatch("countries")
   },
   methods: {
     ...mapActions(["country"]),

@@ -1,6 +1,4 @@
 import storeConfig from "../../store/index.js";
-import Vuex from "vuex";
-import { createLocalVue } from "@vue/test-utils";
 
 const actions = [
   "countries",
